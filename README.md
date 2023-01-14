@@ -1,2 +1,2 @@
 # poo-academia
-projeto de poo
+projeto de POO
