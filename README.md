@@ -1,2 +1,2 @@
 # poo-academia
-projeto de POO
+Projeto final da disciplina de Programação Estruturada e Orientada a Objetos
