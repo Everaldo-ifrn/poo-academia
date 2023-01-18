@@ -1,14 +1,15 @@
-path = 'C:\\Users\\Everaldo Junior\\Desktop\\teste_academia.txt'
 
 class Exercicios:
     def __init__(self, nome, login, senha):
         self.nome = nome
         self.senha = senha
         self.login = login
+        self.path = 'C:\\Users\\joao felipe\\OneDrive\\Documents\\IFRN CURSO PROGRAMAÇA\\ACADEMIA\\'+self.nome+'.txt' #temos que  ver como podemos evitar algum erro caso ele erre o nome, ou bote diferente(mas acho que as condiçoes dao conta disso)
+
     
     def fzrTabela(self):
         try:    #O TRY ESTAR TRATANDO DO ERRO DE NAO EXISTIR UM ARQUIVO AINDA  E DO ERRO SE CASSO A VARIAVEL ACHEI ESTIVER VAIZA(SEM NADA).
-             with open(path, 'r') as arquivo:
+             with open(self.path, 'r') as arquivo:
                  tabelas = arquivo.readlines()
                  for i in tabelas:
                      tabela = i.split('<===>')
@@ -16,7 +17,7 @@ class Exercicios:
                         achei = 1
                         break
              
-             if achei == 1:
+             if achei == 1:    #o que pode evitar o erro mencionado a cima(linhas 7) é melhorar essas condiçoes 
                  print('ops! voce ja possui uma tabela de treinos!')
              else:
                  print('<<<<VAMOS COMEÇAR A CRIAR SEU PLANEJAMENTO>>>>')
@@ -26,7 +27,7 @@ class Exercicios:
                  quarta = input('Treino da quarta: ')
                  quinta = input('Treino da quinta: ')
                  sexta = input('Treino da sexta: ')
-                 with open(path, 'a') as arquivo:
+                 with open(self.path, 'a') as arquivo:
                      arquivo.write(f'{self.nome}<===>{self.senha}\nsegunda: {segunda}\nTerça: {terça}\nQuarta: {quarta}\nQuinta: {quinta}\nSexta{sexta}\n')
              
         except: #BOTEI ESSE CODIGO COMO EXEÇAO PORQUE ACHEI PRATICO, JA QUE NAO FAZ SENTIDO MOSTRAR PARA O CLIENTE QUE O ARQUIVO NAO EXISTE 
@@ -37,7 +38,7 @@ class Exercicios:
              quarta = input('Treino da quarta: ')
              quinta = input('Treino da quinta: ')
              sexta = input('Treino da sexta: ')
-             with open(path, 'a') as arquivo:
+             with open(self.path, 'a') as arquivo:
                  arquivo.write(f'{self.login}<===>{self.senha}\nsegunda: {segunda}\nTerça: {terça}\nQuarta: {quarta}\nQuinta: {quinta}\nSexta: {sexta}\n')
              print('TABELA DE TREINOS FINALIZADA')
 
@@ -46,7 +47,7 @@ class Exercicios:
 
     def alterarTabela(self):
          try: #aqui estar tratando do erro caso o arquivo nao exista ainda
-             with open(path, 'r') as arquivo:
+             with open(self.path, 'r') as arquivo:
                  novo = arquivo.readlines()
                  cont = 0
                  for i in novo:
@@ -74,7 +75,7 @@ class Exercicios:
                  novo.append(f'Quarta: {q}\n')
                  novo.append(f'Quinta: {qi}\n')
                  novo.append(f'Sexta: {se}\n')
-                 with open(path, 'w') as arquivo:
+                 with open(self.path, 'w') as arquivo:     #precisamos modificar da seguinte forma: inves de escrever tudo, escrever apenas a nova tabela
                      ps = 0
                      for i in novo:
                          arquivo.write(i)
