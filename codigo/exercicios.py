@@ -1,18 +1,21 @@
-
+path = 'C:\\Users\\20211174010031\\Downloads\\codigos\\'
 class Exercicios:
     def __init__(self, nome, login):
         self.nome = nome
         self.login = login
-        self.path = 'C:\\Users\\joao felipe\\OneDrive\\Documents\\IFRN CURSO PROGRAMAÇA\\ACADEMIA\\'+self.login+'.txt'
+       
     
-    def fzrTabela(self,data):
-        self.data = data
+    def fzrTabela(self, dia, mes, ano):
+        self.dia = str(dia)
+        self.mes = str(mes)
+        self.ano = str(ano)
         try:    #O TRY ESTAR TRATANDO DO ERRO DE NAO EXISTIR UM ARQUIVO AINDA  E DO ERRO SE CASSO A VARIAVEL ACHEI ESTIVER VAZIA(SEM NADA).
-             with open(self.path, 'r') as arquivo:
+             with open(path+self.login+'.txt', 'r') as arquivo:
                  tabelas = arquivo.readlines()
                  for i in tabelas:
                      tabela = i.split('>>>>')
-                     if tabela[1] == self.data+'\n':
+                     print(tabela)
+                     if tabela[1] == self.dia+'/'+self.mes+'/'+self.ano+'\n': #Preciso corrigir um erro presente aqqui que vale para se a data for a mesma de outra tabela
                         achei = 1
                         break
              
@@ -20,30 +23,28 @@ class Exercicios:
                  print('ops! voce ja possui uma tabela de treinos nessa data!')
              else:
                  print('<<<<VAMOS COMEÇAR A CRIAR SEU PLANEJAMENTO>>>>')
-                 print('ESTES SAO OS TREINOS: OMBRO, BICEBS, TRICiPS, PANTURRILHA, COXA, DORSAL, ABDOMEM, PEITO')
                  segunda = input('Treino da segunda: ')
                  terça = input('Treino da terça: ')
                  quarta = input('Treino da quarta: ')
                  quinta = input('Treino da quinta: ')
                  sexta = input('Treino da sexta: ')
-                 with open(self.path, 'a') as arquivo:
-                     arquivo.write(f'===={self.nome}====\nData>>>>{self.data}\nsegunda: {segunda}\nTerça: {terça}\nQuarta: {quarta}\nQuinta: {quinta}\nSexta{sexta}\n')
+                 with open(path+self.login+'.txt', 'a') as arquivo:
+                     arquivo.write(f'===={self.nome}====\nData>>>>{str(self.dia)}/{str(self.mes)}/{str(self.ano)}\nsegunda: {segunda}\nTerça: {terça}\nQuarta: {quarta}\nQuinta: {quinta}\nSexta: {sexta}\n')
              
         except: #BOTEI ESSE CODIGO COMO EXEÇAO PORQUE ACHEI PRATICO, JA QUE NAO FAZ SENTIDO MOSTRAR PARA O CLIENTE QUE O ARQUIVO NAO EXISTE 
              print('<<<<VAMOS COMEÇAR A CRIAR SEU PLANEJAMENTO>>>>')
-             print('ESTES SAO OS TREINOS: OMBRO, BICEBS, TRICiPS, PANTURRILHA, COXA, DORSAL, ABDOMEM, PEITO')
              segunda = input('Treino da segunda: ')
              terça = input('Treino da terça: ')
              quarta = input('Treino da quarta: ')
              quinta = input('Treino da quinta: ')
              sexta = input('Treino da sexta: ')
-             with open(self.path, 'a') as arquivo:
-                 arquivo.write(f'===={self.nome}====\nData>>>>{self.data}\nsegunda: {segunda}\nTerça: {terça}\nQuarta: {quarta}\nQuinta: {quinta}\nSexta: {sexta}\n')
+             with open(path+self.login+'.txt', 'a') as arquivo:
+                 arquivo.write(f'===={self.nome}====\nData>>>>{str(self.dia)}/{str(self.mes)}/{str(self.ano)}\nsegunda: {segunda}\nTerça: {terça}\nQuarta: {quarta}\nQuinta: {quinta}\nSexta: {sexta}\n')
              print('TABELA DE TREINOS FINALIZADA')
 
     def verTabelas(self):
         try:
-             with open(self.path, 'r') as arquivo:
+             with open(path+self.login+'.txt', 'r') as arquivo:
                  tabelas = arquivo.readlines()
                  for i in tabelas:
                      print(i)
@@ -57,9 +58,12 @@ while True:
     if sistema == 1:
         y = input('Digite o nome(COMPLETO): ')
         w = input('digite o login(CPF): ')
-        z = input('Digite a data(x/x/x):') #podemos melhorar a forma que pedimos a data para evitar erros
+        print('VAMOS ORGANIZAR A DATA...')
+        dia = int(input('Digite o dia do més:'))
+        mes = int(input('Digite o numero do més:'))
+        ano = int(input('Digite o ano:'))
         pessoa = Exercicios(y, w)
-        pessoa.fzrTabela(z)
+        pessoa.fzrTabela(dia, mes, ano)  
     elif sistema == 2:
         y = input('Digite o nome(COMPLETO): ') 
         w = input('digite o login(CPF): ')
