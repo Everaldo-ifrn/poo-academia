@@ -17,7 +17,7 @@ class Usuario:
                      print('Usuário já cadastrado no sistema!')
                 if r == 'nao':
                      print('Nao há cadastro com os dados informados!')
-                     #temos que pensar como parar o codigo aqui porque se ja tiver cadastrado, nao tem sentido cadastrar de novo
+                    
         except: 
             print('Nao há cadastro com os dados informados!')
             
@@ -72,7 +72,7 @@ class Usuario:
         except:
              print('Nao há cadastro com os dados informados!') #Se os dados forem errados entao nao irá abrir nenhum arquivo
     
-    def cancelarCadastro(self, cpf):
+    def cancelarCadastro(self, cpf): #Precisamos rever a ideia de apagar 
          self.cpf = cpf 
          try:
              with open(path+self.cpf+'.txt', 'r') as arquivo:
