@@ -1,4 +1,6 @@
-path = 'C:\\Users\\joao felipe\\OneDrive\\Documents\\IFRN CURSO PROGRAMAÇA\\ACADEMIA\\dados pessoais(academia)\\'
+#LEMBRE-SE: Mude o PATH!
+
+path = 'C:\\Users\\Everaldo Junior\\Desktop\\'
 class Usuario:
     def __init__(self, cpf):          #Verificar se existe cadastro
         self.cpf = cpf
@@ -100,26 +102,26 @@ class Usuario:
 while True:
      cpf = input('Seja bem vindo ao sistema, por favor digite o CPF do cliente>')
      cliente = Usuario(cpf)
-     sistema = int(input('O que deseja fazer...\n[1] para fazer cadastro:\n[2] para alterar dados de cadastro\n[3] para ver relatorio de cadastro\n[4] para cancelar cadastro\n[5] para finalizar sistema\n>'))
-     if sistema == 1:
-         nm = input('Digite o nome>')
-         tel = input('Digite o teelefone>')
-         end = input('Informe o endereço[Cidade, bairro, rua e numero]>')
-         alt = input('Informe a altura>')
-         ps = input('Informe o peso>')
-         mdcs = input('Informe as mediçoes(Braço, perna e cintura)>')
-         plano = int(input('informe qual o plano: ANUAL[1]/MENSAL[2]>'))
-         mnsldd = float(input('Informe a mensalidade correspondente ao plano>'))
-         cliente.fazerCadastro(nm, tel, end, alt, ps, mdcs, plano, mnsldd)
-     if sistema == 3:
-         cpf = input('Informe o CPF novamente por favor...>')
-         cliente.relatorio(cpf)
-     if sistema  == 4:
-         cpf = input('Informe o CPF novamente por favor...>')
-         cliente.cancelarCadastro(cpf)
-     if sistema == 5:
-         print('Ate mais...')
-         break
-
-
-
+     try:
+        sistema = int(input('O que deseja fazer...\n[1] para fazer cadastro:\n[2] para alterar dados de cadastro\n[3] para ver relatorio de cadastro\n[4] para cancelar cadastro\n[5] para finalizar sistema\n>'))
+        if sistema == 1:
+            nm = input('Digite o nome> ')
+            tel = input('Digite o telefone> ')
+            end = input('Informe o endereço[Cidade, bairro, rua e numero]> ')
+            alt = input('Informe a altura> ')
+            ps = input('Informe o peso> ')
+            mdcs = input('Informe as mediçoes(Braço, perna e cintura)> ')
+            plano = int(input('informe qual o plano: ANUAL[1] / MENSAL[2]> '))
+            mnsldd = float(input('Informe a mensalidade correspondente ao plano> '))
+            cliente.fazerCadastro(nm, tel, end, alt, ps, mdcs, plano, mnsldd)
+        if sistema == 3:
+            cpf = input('Informe o CPF novamente por favor...> ')
+            cliente.relatorio(cpf)
+        if sistema  == 4:
+            cpf = input('Informe o CPF novamente por favor...> ')
+            cliente.cancelarCadastro(cpf)
+        if sistema == 5:
+            print('Ate mais...')
+            break
+     except ValueError:
+         print('>> Você digitou algo fora da lista dada, tente novamente! <<')
