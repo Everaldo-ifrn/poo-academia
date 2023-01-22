@@ -41,11 +41,11 @@ class Usuario:
             arquivo.write('Medições: ' + self.medicoes + '\n')
             #Aqui sera colocado no arquivo aquele plano que foi escolhido
             if self.plano == 1:
-                     arquivo.write('PLANO>>>MENSAL''\n')
+                     arquivo.write('PLANO:MENSAL''\n')
                      for i in range(1, 13):
                           arquivo.write(f'Més{i}: R${self.mensalidade}\n')
             if self.plano == 2:
-                     arquivo.write('PLANO>>>MENSAL''\n')
+                     arquivo.write('PLANO:MENSAL''\n')
                      for i in range(1, 13):
                          arquivo.write(f'Més{i}: R${self.mensalidade}\n')
             
@@ -53,9 +53,10 @@ class Usuario:
     def alterarDados(self, cpf):
         pass
 
-    def relatorio(self, cpf):
+    def relatorio(self,cpf):
+        self.cpf = cpf
         try:
-            with open(path+self.cpf+'.txt') as arquivo: 
+            with open(path+self.cpf+'.txt', 'r') as arquivo: 
                 lista = arquivo.readlines()
                 r = ''
                 for linhas in lista:
@@ -69,36 +70,56 @@ class Usuario:
                 else:
                     print('Dados nao encontrados!')
         except:
-            pass
-            #print('Nao há cadastro com os dados informados!') #Se os dados forem errados entao nao irá abrir nenhum arquivo
+             print('Nao há cadastro com os dados informados!') #Se os dados forem errados entao nao irá abrir nenhum arquivo
+    
+    def cancelarCadastro(self, cpf):
+         self.cpf = cpf 
+         try:
+             with open(path+self.cpf+'.txt', 'r') as arquivo:
+                 lista = arquivo.readlines()
+                 r = ''
+                 for linhas in lista:
+                     linha = linhas.split(':')
+                     if linha[1] == 'MENSAL\n':
+                         r = 'mensal'
+                         break
+                     if linha[1] == 'ANUAL\n':
+                         r = 'anual'
+                         break 
+                 if r == 'mensal':
+                     import os #utilizamos essa funçao que trabalha com arquivos, e uma das suas funçoes é excluir/ acredito que o erro seja aqui
+                     os.remove(self.cpf+'.txt')
+                     print('CADASTRO CANCELADO COM SUCESSO...')
+                 if r == 'anual':
+                     pass
+         except:
+             print('Nao há cadastro com esses dados!')
 
 
 
 while True:
-    sistema = int(input('O que deseja fazer...\n[1] para fazer cadastro:\n[2] para alterar dados de cadastro\n[3] para ver relatorio de cadastro\n[4] para cancelar cadastro\n[5] para finalizar sistema\n>'))
-    if sistema == 1:
-        cpf = input('Por favor digite o CPF>')
-        cliente = Usuario(cpf)
-        sistema2 =int(input('Deseja continuarsim[1]/nao[2]:'))
-        if sistema2 == 1:
-             nm = input('Digite o nome>')
-             tel = input('Digite o teelefone>')
-             end = input('Informe o endereço[Cidade, bairro, rua e numero]>')
-             alt = input('Informe a altura>')
-             ps = input('Informe o peso>')
-             mdcs = input('Informe as mediçoes(Braço, perna e cintura)>')
-             plano = int(input('informe qual o plano: ANUAL[1]/MENSAL[2]>'))
-             mnsldd = float(input('Informe a mensalidade correspondente ao plano>'))
-             cliente.fazerCadastro(nm, tel, end, alt, ps, mdcs, plano, mnsldd)
-        if sistema2 == 2:
-            pass
-    if sistema == 3:
-        cpf = input('Por favor digite o CPF>')
-        cliente = Usuario(cpf)
-        cliente.relatorio(cpf)
-    if sistema == 5:
-        print('Ate mais...')
-        break
+     cpf = input('Seja bem vindo ao sistema, por favor digite o CPF do cliente>')
+     cliente = Usuario(cpf)
+     sistema = int(input('O que deseja fazer...\n[1] para fazer cadastro:\n[2] para alterar dados de cadastro\n[3] para ver relatorio de cadastro\n[4] para cancelar cadastro\n[5] para finalizar sistema\n>'))
+     if sistema == 1:
+         nm = input('Digite o nome>')
+         tel = input('Digite o teelefone>')
+         end = input('Informe o endereço[Cidade, bairro, rua e numero]>')
+         alt = input('Informe a altura>')
+         ps = input('Informe o peso>')
+         mdcs = input('Informe as mediçoes(Braço, perna e cintura)>')
+         plano = int(input('informe qual o plano: ANUAL[1]/MENSAL[2]>'))
+         mnsldd = float(input('Informe a mensalidade correspondente ao plano>'))
+         cliente.fazerCadastro(nm, tel, end, alt, ps, mdcs, plano, mnsldd)
+     if sistema == 3:
+         cpf = input('Informe o CPF novamente por favor...>')
+         cliente.relatorio(cpf)
+     if sistema  == 4:
+         cpf = input('Informe o CPF novamente por favor...>')
+         cliente.cancelarCadastro(cpf)
+     if sistema == 5:
+         print('Ate mais...')
+         break
 
 
 
