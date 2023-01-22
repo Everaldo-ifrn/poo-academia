@@ -90,7 +90,7 @@ class Usuario:
                          break 
                  if r == 'mensal':
                     import os #utilizamos essa funçao que trabalha com arquivos, e uma das suas funçoes é excluir/ acredito que o erro seja aqui
-                    os.remove(path + self.cpf + '.txt')   #O erro está aqui!
+                    os.remove(self.cpf + '.txt')   #O erro está aqui!
                     print('CADASTRO CANCELADO COM SUCESSO...')
                  elif r == 'anual':
                     pass
