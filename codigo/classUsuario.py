@@ -85,15 +85,15 @@ class Usuario:
                      if linha[1] == 'MENSAL\n':
                          r = 'mensal'
                          break
-                     if linha[1] == 'ANUAL\n':
+                     elif linha[1] == 'ANUAL\n':
                          r = 'anual'
                          break 
                  if r == 'mensal':
-                     import os #utilizamos essa funçao que trabalha com arquivos, e uma das suas funçoes é excluir/ acredito que o erro seja aqui
-                     os.remove(self.cpf+'.txt')
-                     print('CADASTRO CANCELADO COM SUCESSO...')
-                 if r == 'anual':
-                     pass
+                    import os #utilizamos essa funçao que trabalha com arquivos, e uma das suas funçoes é excluir/ acredito que o erro seja aqui
+                    os.remove(path + self.cpf + '.txt')   #O erro está aqui!
+                    print('CADASTRO CANCELADO COM SUCESSO...')
+                 elif r == 'anual':
+                    pass
          except:
              print('Nao há cadastro com esses dados!')
 
