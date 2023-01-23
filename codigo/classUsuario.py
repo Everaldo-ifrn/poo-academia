@@ -75,27 +75,28 @@ class Usuario:
              print('Nao há cadastro com os dados informados!') #Se os dados forem errados entao nao irá abrir nenhum arquivo
     
     def cancelarCadastro(self, cpf): #Precisamos rever a ideia de apagar 
-         self.cpf = cpf 
-         try:
-             with open(path+self.cpf+'.txt', 'r') as arquivo:
-                 lista = arquivo.readlines()
-                 r = ''
-                 for linhas in lista:
-                     linha = linhas.split(':')
-                     if linha[1] == 'MENSAL\n':
-                         r = 'mensal'
-                         break
-                     elif linha[1] == 'ANUAL\n':
-                         r = 'anual'
-                         break 
-                 if r == 'mensal':
+        self.cpf = cpf
+        try: 
+            with open(path+self.cpf+'.txt', 'r') as arquivo:
+                lista = arquivo.readlines()
+                r = ''
+                for linhas in lista:
+                    linha = linhas.split(':')
+                    if linha[1] == 'MENSAL\n':
+                        r = 'mensal'
+                        break
+                    elif linha[1] == 'ANUAL\n':
+                        r = 'anual'
+                        break 
+                if r == 'mensal':
                     import os #utilizamos essa funçao que trabalha com arquivos, e uma das suas funçoes é excluir/ acredito que o erro seja aqui
                     os.remove(self.cpf + '.txt')   #O erro está aqui!
                     print('CADASTRO CANCELADO COM SUCESSO...')
-                 elif r == 'anual':
+                elif r == 'anual':
                     pass
-         except:
-             print('Nao há cadastro com esses dados!')
+        except:
+            print('Nao há cadastro com esses dados!')
+
 
 
 
