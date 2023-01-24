@@ -52,10 +52,14 @@ class Usuario:
                          arquivo.write(f'Més{i}: R${self.mensalidade}\n')
             
 
-    def alterarDados(self, cpf):
-        pass
+    def alterarDados(self, novoDado, cpf, r):
+        with open(path + self.cpf + '.txt', 'r') as arquivo:
+            linhas = arquivo.readlines()
+            for linha in linhas:
+                linha = linha.split(': ')            #Tem erros que ainda vou concertar!
+                #print(linha[1].split('\n'))
 
-    def relatorio(self,cpf):
+    def relatorio(self, cpf):
         self.cpf = cpf
         try:
             with open(path+self.cpf+'.txt', 'r') as arquivo: 
@@ -105,6 +109,7 @@ while True:
      cliente = Usuario(cpf)
      try:
         sistema = int(input('O que deseja fazer...\n[1] para fazer cadastro:\n[2] para alterar dados de cadastro\n[3] para ver relatorio de cadastro\n[4] para cancelar cadastro\n[5] para finalizar sistema\n>'))
+
         if sistema == 1:
             nm = input('Digite o nome> ')
             tel = input('Digite o telefone> ')
@@ -115,14 +120,23 @@ while True:
             plano = int(input('informe qual o plano: ANUAL[1] / MENSAL[2]> '))
             mnsldd = float(input('Informe a mensalidade correspondente ao plano> '))
             cliente.fazerCadastro(nm, tel, end, alt, ps, mdcs, plano, mnsldd)
-        if sistema == 3:
+
+        elif sistema == 2:
+            r = int(input('O que você quer mudar? \n|1| Nome \n|2| CPF \n|3| Telefone \n|4| Endereço \n|5| Altura \n|6| Peso \n|7| Medições \n|8| Plano \n'))
+            novoDado = input('Qual é o novo dado? ')
+            cliente.alterarDados(novoDado, cpf, r)
+
+        elif sistema == 3:
             cpf = input('Informe o CPF novamente por favor...> ')
-            cliente.relatorio(cpf)
-        if sistema  == 4:
+            cliente.relatorio(cpf, r)
+
+        elif sistema  == 4:
             cpf = input('Informe o CPF novamente por favor...> ')
             cliente.cancelarCadastro(cpf)
-        if sistema == 5:
+
+        elif sistema == 5:
             print('Ate mais...')
             break
+        
      except ValueError:
          print('>> Você digitou algo fora da lista dada, tente novamente! <<')
