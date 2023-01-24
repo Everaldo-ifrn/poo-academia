@@ -1,6 +1,6 @@
 #LEMBRE-SE: Mude o PATH!
 
-path = 'C:\\Users\\joao felipe\\OneDrive\\Documents\\IFRN CURSO PROGRAMAÇA\\ACADEMIA\\dados pessoais(academia)\\'
+path = 'C:\\Users\\Everaldo Junior\\Desktop\\'
 class Usuario:
     def __init__(self, cpf):          #Verificar se existe cadastro
         self.cpf = cpf
@@ -43,22 +43,33 @@ class Usuario:
             arquivo.write('Medições: ' + self.medicoes + '\n')
             #Aqui sera colocado no arquivo aquele plano que foi escolhido
             if self.plano == 1:
-                     arquivo.write('PLANO:MENSAL''\n')
+                     arquivo.write('PLANO: MENSAL''\n')
                      for i in range(1, 13):
                           arquivo.write(f'Més{i}: R${self.mensalidade}\n')
             if self.plano == 2:
-                     arquivo.write('PLANO:MENSAL''\n')
+                     arquivo.write('PLANO: MENSAL''\n')
                      for i in range(1, 13):
                          arquivo.write(f'Més{i}: R${self.mensalidade}\n')
             
 
     def alterarDados(self, novoDado, cpf, r):
-        with open(path + self.cpf + '.txt', 'r') as arquivo:
+        with open(path + cpf + '.txt', 'r') as arquivo:
             linhas = arquivo.readlines()
+            lista = []
             for linha in linhas:
-                linha = linha.split(': ')            #Tem erros que ainda vou concertar!
-                #print(linha[1].split('\n'))
 
+                if r == '1':                     #Estou mudando o nome
+                    linha = linha.split(': ')
+                    if linha[0] == 'Nome':
+                        linha.pop(1)              #Por enquanto essa função só muda o nome!
+                        linha.insert(1, novoDado + '\n')
+                        print(linha)
+                lista.append(linha)
+
+
+        with open(path + cpf + '.txt', 'w') as arquivo:           #Estou reescrevendo a todos os dados com o novo dado
+            for l in lista:
+                arquivo.write(l[0]+ ': ' +l[1])
 
     def relatorio(self, cpf):
         self.cpf = cpf
@@ -109,7 +120,7 @@ class Usuario:
 
 
 while True:
-     cpf = input('Seja bem vindo ao sistema, por favor digite o CPF do cliente>')
+     cpf = input('Seja bem vindo ao sistema, por favor digite o CPF do cliente> ')
      cliente = Usuario(cpf)
      try:
         sistema = int(input('O que deseja fazer...\n[1] para fazer cadastro:\n[2] para alterar dados de cadastro\n[3] para ver relatorio de cadastro\n[4] para cancelar cadastro\n[5] para finalizar sistema\n>'))
@@ -126,8 +137,8 @@ while True:
             cliente.fazerCadastro(nm, tel, end, alt, ps, mdcs, plano, mnsldd)
 
         elif sistema == 2:
-            r = int(input('O que você quer mudar? \n|1| Nome \n|2| CPF \n|3| Telefone \n|4| Endereço \n|5| Altura \n|6| Peso \n|7| Medições \n|8| Plano \n'))
-            novoDado = input('Qual é o novo dado? ')
+            r = input('O que você quer mudar? \n|1| Nome \n|2| CPF \n|3| Telefone \n|4| Endereço \n|5| Altura \n|6| Peso \n|7| Medições \n|8| Plano \n')
+            novoDado = input('Qual é o novo dado? \n')
             cliente.alterarDados(novoDado, cpf, r)
 
         elif sistema == 3:
