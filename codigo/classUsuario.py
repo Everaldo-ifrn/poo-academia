@@ -1,6 +1,6 @@
 #LEMBRE-SE: Mude o PATH!
 
-path = 'C:\\Users\\Everaldo Junior\\Desktop\\'
+path = 'C:\\Users\\joao felipe\\OneDrive\\Documents\\IFRN CURSO PROGRAMAÇA\\ACADEMIA\\dados pessoais(academia)\\'
 class Usuario:
     def __init__(self, cpf):          #Verificar se existe cadastro
         self.cpf = cpf
@@ -59,6 +59,7 @@ class Usuario:
                 linha = linha.split(': ')            #Tem erros que ainda vou concertar!
                 #print(linha[1].split('\n'))
 
+
     def relatorio(self, cpf):
         self.cpf = cpf
         try:
@@ -78,30 +79,33 @@ class Usuario:
         except:
              print('Nao há cadastro com os dados informados!') #Se os dados forem errados entao nao irá abrir nenhum arquivo
     
-    def cancelarCadastro(self, cpf): #Precisamos rever a ideia de apagar 
+
+    def cancelarCadastro(self, cpf): 
         self.cpf = cpf
         try: 
             with open(path+self.cpf+'.txt', 'r') as arquivo:
-                lista = arquivo.readlines()
-                r = ''
-                for linhas in lista:
-                    linha = linhas.split(':')
-                    if linha[1] == 'MENSAL\n':
-                        r = 'mensal'
-                        break
-                    elif linha[1] == 'ANUAL\n':
-                        r = 'anual'
-                        break 
-                if r == 'mensal':
-                    import os #utilizamos essa funçao que trabalha com arquivos, e uma das suas funçoes é excluir/ acredito que o erro seja aqui
-                    os.remove(self.cpf + '.txt')   #O erro está aqui!
-                    print('CADASTRO CANCELADO COM SUCESSO...')
-                elif r == 'anual':
-                    pass
+                 lista = arquivo.readlines()
+                 r = ''
+                 for linhas in lista:
+                     linha = linhas.split(':')
+                     if linha[1] == 'MENSAL\n':
+                         r = 'mensal'
+                         break
+                     elif linha[1] == 'ANUAL\n':
+                         r = 'anual'
+                         break 
+                 if r == 'mensal':
+                    import os
+                    lista_arquivos = os.listdir(path)
+                    nome = path + self.cpf + '.txt'
+                    for arquivox in lista_arquivos:
+                         if arquivox == self.cpf + '.txt':
+                             os.remove(nome) #o erro é exatamente nessa linhas, mas nao tem sentido testei em outro arquivo.py e deu certo
+                             print('CADASTRO CANCELADO COM SUCESSO!')
+                 elif r == 'anual':
+                     print('Para efetuar o cancelamento é nessessario pagar a taxa!')      
         except:
             print('Nao há cadastro com esses dados!')
-
-
 
 
 while True:
@@ -127,11 +131,11 @@ while True:
             cliente.alterarDados(novoDado, cpf, r)
 
         elif sistema == 3:
-            cpf = input('Informe o CPF novamente por favor...> ')
-            cliente.relatorio(cpf, r)
+            cpf = input('Informe o CPF correspondente ao cadastro que deseja olhar o relatorio...> ')
+            cliente.relatorio(cpf)
 
         elif sistema  == 4:
-            cpf = input('Informe o CPF novamente por favor...> ')
+            cpf = input('Informe o CPF correspondente ao cadastro que deseja cancelar...> ')
             cliente.cancelarCadastro(cpf)
 
         elif sistema == 5:
@@ -140,3 +144,4 @@ while True:
         
      except ValueError:
          print('>> Você digitou algo fora da lista dada, tente novamente! <<')
+
