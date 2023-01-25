@@ -1,6 +1,6 @@
 #LEMBRE-SE: Mude o PATH!
 
-path = 'C:\\Users\\Everaldo Junior\\Desktop\\'
+path = 'C:\\Users\\20211174010031\\Downloads\\codigos\\ACADEMIA\\usuarios academia\\'
 class Usuario:
     def __init__(self, cpf):          #Verificar se existe cadastro
         self.cpf = cpf
@@ -43,11 +43,11 @@ class Usuario:
             arquivo.write('Medições: ' + self.medicoes + '\n')
             #Aqui sera colocado no arquivo aquele plano que foi escolhido
             if self.plano == 1:
-                     arquivo.write('PLANO: MENSAL''\n')
+                     arquivo.write('PLANO: ANUAL\n')
                      for i in range(1, 13):
                           arquivo.write(f'Més{i}: R${self.mensalidade}\n')
             if self.plano == 2:
-                     arquivo.write('PLANO: MENSAL''\n')
+                     arquivo.write('PLANO: MENSAL\n')
                      for i in range(1, 13):
                          arquivo.write(f'Més{i}: R${self.mensalidade}\n')
             
@@ -96,31 +96,41 @@ class Usuario:
 
     def cancelarCadastro(self, cpf): 
         self.cpf = cpf
-        try: 
-            with open(path+self.cpf+'.txt', 'r') as arquivo:
+        try:
+             with open(path+self.cpf+'.txt', 'r') as arquivo:
                  lista = arquivo.readlines()
                  r = ''
-                 for linhas in lista:
-                     linha = linhas.split(':')
-                     if linha[1] == 'MENSAL\n':
-                         r = 'mensal'
+                 for plano in lista:
+                     lista2 = plano.split(': ')
+                     if lista2[1] == 'MENSAL\n':
+                         r = 'MENSAL'
+                         arquivo.close()
                          break
-                     elif linha[1] == 'ANUAL\n':
-                         r = 'anual'
-                         break 
-                 if r == 'mensal':
-                    import os
-                    lista_arquivos = os.listdir(path)
-                    nome = path + self.cpf + '.txt'
-                    for arquivox in lista_arquivos:
-                         if arquivox == self.cpf + '.txt':
-                             os.remove(nome) #o erro é exatamente nessa linhas, mas nao tem sentido testei em outro arquivo.py e deu certo
-                             print('CADASTRO CANCELADO COM SUCESSO!')
-                 elif r == 'anual':
-                     print('Para efetuar o cancelamento é nessessario pagar a taxa!')      
+                     if lista2[1] == 'ANUAL\n':
+                         r = 'ANUAL'
+                         break
+             if r == 'MENSAL':
+                 import os
+                 lista_arquivos = os.listdir(path)
+                 nome = path + self.cpf + '.txt'
+                 for arquivox in lista_arquivos:
+                     if arquivox == self.cpf + '.txt':
+                        os.remove(nome)  #aqui usamos essa biblioteca para apagar o arquivo do computador(apenas mensais que nao  atribuem taxas)
+                        print('CADASTRO CANCELADO')
+             elif r == 'ANUAL':          #aqui cancelamos as parcelas e atribuimos a taxa no arquivo, em finacias pode-se dar baixa
+                 with open(path+self.cpf+'.txt', 'r') as arquivo:
+                     lista = arquivo.readlines()
+                     for i in range(12):
+                         lista.pop(8)
+                     taxa = input('Informe o valor da taxa>>>')
+                     lista.append(f'TAXA: R${taxa}\n')
+                 with open(path+self.cpf+'.txt', 'w') as arquivo:
+                    for i in lista:
+                         arquivo.write(i)
+                    print('CADASTRO CANCELADO...TAXA PENDENDTE...')        
         except:
-            print('Nao há cadastro com esses dados!')
-
+            print('NAO HÁ DADOS RELACIONADOS A ESSE CADASTRO!')              
+                     
 
 while True:
      cpf = input('Seja bem vindo ao sistema, por favor digite o CPF do cliente> ')
