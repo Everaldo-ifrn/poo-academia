@@ -56,20 +56,23 @@ class Usuario:
         with open(path + cpf + '.txt', 'r') as arquivo:
             linhas = arquivo.readlines()
             lista = []
+            dados = ['Nome', 'CPF', 'Telefone', 'Endereço', 'Altura', 'Peso', 'Medições', 'PLANO'] #criei essa lista pq fica mais facil o código usando for
+            c = 0
+
             for linha in linhas:
-
-                if r == '1':                     #Estou mudando o nome
+                if r == (c+1):                     #Estou mudando o dado que ele escolheu
                     linha = linha.split(': ')
-                    if linha[0] == 'Nome':
-                        linha.pop(1)              #Por enquanto essa função só muda o nome!
+                    if linha[0] == dados[c]:
+                        linha.pop(1)
                         linha.insert(1, novoDado + '\n')
-                        print(linha)
-                lista.append(linha)
-
+                        lista.append(linha[0] + ': ' + linha[1])
+                else:
+                    lista.append(linha)  
+                c = c + 1
 
         with open(path + cpf + '.txt', 'w') as arquivo:           #Estou reescrevendo a todos os dados com o novo dado
             for l in lista:
-                arquivo.write(l[0]+ ': ' +l[1])
+                arquivo.write(l)
 
     def relatorio(self, cpf):
         self.cpf = cpf
@@ -137,7 +140,7 @@ while True:
             cliente.fazerCadastro(nm, tel, end, alt, ps, mdcs, plano, mnsldd)
 
         elif sistema == 2:
-            r = input('O que você quer mudar? \n|1| Nome \n|2| CPF \n|3| Telefone \n|4| Endereço \n|5| Altura \n|6| Peso \n|7| Medições \n|8| Plano \n')
+            r = int(input('O que você quer mudar? \n|1| Nome \n|2| CPF \n|3| Telefone \n|4| Endereço \n|5| Altura \n|6| Peso \n|7| Medições \n|8| Plano \n'))
             novoDado = input('Qual é o novo dado? \n')
             cliente.alterarDados(novoDado, cpf, r)
 
@@ -155,4 +158,3 @@ while True:
         
      except ValueError:
          print('>> Você digitou algo fora da lista dada, tente novamente! <<')
-
