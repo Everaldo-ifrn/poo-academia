@@ -150,7 +150,7 @@ class Usuario:
                      
 
 while True:
-     cpf = input('Seja bem vindo ao sistema, por favor digite o CPF do cliente> ')
+     cpf = input('- Seja bem vindo ao sistema, por favor digite o CPF do cliente> ')
      cliente = Usuario(cpf)
      print(' ')
      try:
