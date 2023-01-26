@@ -1,7 +1,4 @@
-#LEMBRE-SE: Mude o PATH!
-#Lembre-se: feche o arquivo antes de mudar o nome dele usando a função os.rename(!)
-
-path = 'C:\\Users\\20211174010034\\Desktop\\'
+path = 'C:\\Users\\Everaldo Junior\\Desktop\\'
 class Usuario:
     def __init__(self, cpf):          #Verificar se existe cadastro
         self.cpf = cpf
@@ -58,7 +55,7 @@ class Usuario:
             with open(path + cpf + '.txt', 'r') as arquivo:
                 linhas = arquivo.readlines()
                 lista = []
-                dados = ['Nome', 'CPF', 'Telefone', 'Endereço', 'Altura', 'Peso', 'Medições', 'PLANO'] #criei essa lista pq fica mais facil o código usando for
+                dados = ['Nome', 'Telefone', 'Endereço', 'Altura', 'Peso', 'Medições', 'PLANO'] #criei essa lista pq fica mais facil o código usando for
                 c = 0
                 re = ''
 
@@ -69,12 +66,15 @@ class Usuario:
                         break
 
                 if re == 'Sim':
-                    r = int(input('O que você quer mudar? \n|1| Nome \n|2| CPF \n|3| Telefone \n|4| Endereço \n|5| Altura \n|6| Peso \n|7| Medições \n|8| Plano \n'))
+                    r = int(input('O que você quer mudar? \n|1| Nome \n|2| Telefone \n|3| Endereço \n|4| Altura \n|5| Peso \n|6| Medições \n|7| Plano \n'))
+                    if r > 8 or r < 1:
+                        raise Exception()             #se ele digitar um nº maior que 7 e menor q 1 vai gera um erro
+                    
                     novoDado = input('Qual é o novo dado? \n')
                     for linha in linhas:
-                        if r == (c+1):                     #Estou mudando o dado que ele escolheu
+                        if r+1 == (c+1):                     #Estou mudando o dado que ele escolheu
                             linha = linha.split(': ')
-                            if linha[0] == dados[c]:
+                            if linha[0] == dados[r-1]:
                                 linha.pop(1)
                                 linha.insert(1, novoDado + '\n')
                                 lista.append(linha[0] + ': ' + linha[1])
@@ -89,7 +89,7 @@ class Usuario:
                 else:
                     print('Não há dados cadastro!') 
         except:
-            print('Não há dados cadastro!')
+            print('Um erro foi cometido, tente novamente!')
 
 
     def relatorio(self, cpf):
