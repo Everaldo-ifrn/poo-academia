@@ -1,4 +1,5 @@
 #LEMBRE-SE: Mude o PATH!
+#Lembre-se: feche o arquivo antes de mudar o nome dele usando a função os.rename(!)
 
 path = 'C:\\Users\\20211174010034\\Desktop\\'
 class Usuario:
