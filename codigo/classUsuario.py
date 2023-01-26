@@ -1,6 +1,6 @@
 #LEMBRE-SE: Mude o PATH!
 
-path = 'C:\\Users\\Everaldo Junior\\Desktop\\'
+path = 'C:\\Users\\20211174010034\\Desktop\\'
 class Usuario:
     def __init__(self, cpf):          #Verificar se existe cadastro
         self.cpf = cpf
@@ -187,6 +187,8 @@ while True:
         elif sistema == 5:
             print('Ate mais...')
             break
+        else:
+            print('>> Você digitou algo fora da lista dada, tente novamente! <<')
         
      except ValueError:
          print('>> Você digitou algo fora da lista dada, tente novamente! <<')
