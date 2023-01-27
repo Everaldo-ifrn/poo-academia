@@ -1,4 +1,4 @@
-path = 'C:\\Users\\Everaldo Junior\\Desktop\\'
+path = 'C:\\Users\\20211174010031\\Downloads\\codigos\\ACADEMIA\\usuarios academia\\'
 class Usuario:
     def __init__(self, cpf):          #Verificar se existe cadastro
         self.cpf = cpf
@@ -32,8 +32,8 @@ class Usuario:
         self.mensalidade = mensalidade
 
         with open(path+self.cpf+'.txt', 'a') as arquivo:
-            arquivo.write('Nome: ' + self.nome + '\n')
             arquivo.write('CPF: ' + str(self.cpf) + '\n')
+            arquivo.write('Nome: ' + self.nome + '\n')
             arquivo.write('Telefone: ' + self.telefone + '\n')
             arquivo.write('Endereço: ' + self.endereco + '\n')
             arquivo.write('Altura: ' + self.altura + '\n')
@@ -193,3 +193,5 @@ while True:
         
      except ValueError:
          print('>> Você digitou algo fora da lista dada, tente novamente! <<')
+
+         
