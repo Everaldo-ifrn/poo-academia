@@ -9,7 +9,7 @@ class Financias:
             linhas = arquivo.readlines()
             for linha in linhas:
                 lista = linha.split(': ')
-                if lista[1] == classUsuario.cpf+'\n':
+                if lista[1] == classUsuario.cpf+'\n':     #Everaldo: Você colocou "uma classe.atributo", mas o certo é "objeto.atributo"
                     print('achei')
                 else:
                     print('a')
