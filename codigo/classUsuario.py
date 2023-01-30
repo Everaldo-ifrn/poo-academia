@@ -43,11 +43,11 @@ class Usuario:
             if self.plano == 1:
                      arquivo.write('PLANO: ANUAL\n')
                      for i in range(1, 13):
-                          arquivo.write(f'Més{i}: R${self.mensalidade}\n')
+                          arquivo.write(f'Més-{i}-R${self.mensalidade}\n')
             if self.plano == 2:
                      arquivo.write('PLANO: MENSAL\n')
                      for i in range(1, 13):
-                         arquivo.write(f'Més{i}: R${self.mensalidade}\n')
+                         arquivo.write(f'Més-{i}-R${self.mensalidade}\n')
             
 
     def alterarDados(self, cpf):
@@ -193,10 +193,15 @@ while True:
                 break
             else:
                 print('>> Você digitou algo fora da lista dada, tente novamente! <<')
-        if sistemaPrincipal == 2: #Nao ta funcionando como eu queria, nao ocorre o codigo do outro arquivo
-            print('ola')   
-            from financias import Financias
+        if sistemaPrincipal == 2: #Nao ta funcionando como eu queria, nao ocorre o codigo do outro arquivo 
+            from classFinancias import Financias
             cliente = Financias()
+            sistema = int(input('O que deseja fazer...[1] Dar baixa na fatura\n[2] Dar baixa em uma taxa\n>'))
+            
+            if sistema == 1:
+                mes = input('digite o numero do mes 1, 2, 3...>')
+                valor = input('Informe o valor da mensalidade>')
+                cliente.darBaixaFatura(mes, valor)
             
      except ValueError:
         print('>> Você digitou algo fora da lista dada, tente novamente! <<')
