@@ -1,5 +1,6 @@
-path = 'C:\\Users\\20211174010034\\Desktop\\'
 from classFinancias import Financias
+path = 'C:\\Users\\20211174010034\\Desktop\\'
+
 
 class Usuario:
     def __init__(self, cpf):          #Verificar se existe cadastro
@@ -198,11 +199,11 @@ while True:
         if sistemaPrincipal == 2: #Nao ta funcionando como eu queria, nao ocorre o codigo do outro arquivo 
             
             clienteF = Financias(cliente.cpf)
-            sistema = int(input('O que deseja fazer...[1] Dar baixa na fatura\n[2] Dar baixa em uma taxa\n>'))
+            sistema = int(input('O que deseja fazer... \n[1] Dar baixa na fatura\n[2] Dar baixa em uma taxa\n>'))
             
             if sistema == 1:
                 mes = input('digite o numero do mes 1, 2, 3...>')
-                valor = input('Informe o valor da mensalidade>')
+                valor = float(input('Informe o valor da mensalidade>'))
                 clienteF.darBaixaFatura(mes, valor)
             
      except ValueError:
