@@ -1,4 +1,6 @@
-path = 'C:\\Users\\joao felipe\\OneDrive\Área de Trabalho\\dados pessoais(academia)\\'
+path = 'C:\\Users\\20211174010034\\Desktop\\'
+from classFinancias import Financias
+
 class Usuario:
     def __init__(self, cpf):          #Verificar se existe cadastro
         self.cpf = cpf
@@ -194,14 +196,14 @@ while True:
             else:
                 print('>> Você digitou algo fora da lista dada, tente novamente! <<')
         if sistemaPrincipal == 2: #Nao ta funcionando como eu queria, nao ocorre o codigo do outro arquivo 
-            from classFinancias import Financias
-            cliente = Financias()
+            
+            clienteF = Financias(cliente.cpf)
             sistema = int(input('O que deseja fazer...[1] Dar baixa na fatura\n[2] Dar baixa em uma taxa\n>'))
             
             if sistema == 1:
                 mes = input('digite o numero do mes 1, 2, 3...>')
                 valor = input('Informe o valor da mensalidade>')
-                cliente.darBaixaFatura(mes, valor)
+                clienteF.darBaixaFatura(mes, valor)
             
      except ValueError:
         print('>> Você digitou algo fora da lista dada, tente novamente! <<')
