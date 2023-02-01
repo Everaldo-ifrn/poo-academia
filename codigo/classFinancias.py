@@ -1,11 +1,11 @@
-path = 'C:\\Users\\joao felipe\\OneDrive\\Área de Trabalho\\dados pessoais(academia)\\'
-from classUsuario import cliente
+path = 'C:\\Users\\20211174010034\\Desktop\\'
+#import classUsuario
 
 #self.cpf = cliente.cpf
 
 class Financias:
-    def __init__(self):
-        self.cpf = cliente.cpf 
+    def __init__(self, cpf):
+        self.cpf = cpf 
         try:
             with open(path+self.cpf+'.txt', 'r') as arquivo: #aqui estou vendo se existe cadastro
                 linhas = arquivo.readlines()
