@@ -54,9 +54,9 @@ class Financias:
                 with open(path+self.cpf+'.txt', 'w') as arquivo:
                     for i in linhas:
                         arquivo.write(i)
-                        print('mensalidade dada baixa com sucesso!')
+                    print('mensalidade dada baixa com sucesso!')
             elif achei == 'tempago':
-                print('Mesnsalidade ja paga!')
+                print('Mesnsalidade já tá paga!')
             elif achei == 'ntem':
                 print('Dados informados errados...ou taxa pendente!')
         except:
