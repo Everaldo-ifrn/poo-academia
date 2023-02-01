@@ -1,7 +1,6 @@
-#Everaldo: Só criei esse arquivo como teste, não interfere em nenhum dos outros arquivos
 from classUsuario import Usuario
-from exercicios import Exercicios
-from financias import Financias
+#from exercicios import Exercicios
+from classFinancias import Financias
 
 while True:
      cpf = input('- Seja bem vindo ao sistema, por favor digite o CPF do cliente> ')
@@ -45,10 +44,19 @@ while True:
                 break
             else:
                 print('>> Você digitou algo fora da lista dada, tente novamente! <<')
-        if sistemaPrincipal == 2: #Nao ta funcionando como eu queria, nao ocorre o codigo do outro arquivo
-            print('ola')   
-            #from financias import Financias
-            cliente = Financias()
+        if sistemaPrincipal == 2: #Nao ta funcionando como eu queria, nao ocorre o codigo do outro arquivo 
             
+            clienteF = Financias(cliente.cpf)
+            sistema = int(input('O que deseja fazer... \n[1] Dar baixa na fatura\n[2] Dar baixa em uma taxa\n>'))
+            
+            if sistema == 1:
+                mes = int(input('digite o numero do mes 1, 2, 3...>'))
+                valor = float(input('Informe o valor da mensalidade>'))
+                clienteF.darBaixaFatura(mes, valor)
+
+            elif sistema == 2:
+                valorT = float(input('Informe o valor da taxa>'))
+                clienteF.darBaixaTaxa(valorT)
+
      except ValueError:
         print('>> Você digitou algo fora da lista dada, tente novamente! <<')
