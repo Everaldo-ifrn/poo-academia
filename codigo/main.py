@@ -65,7 +65,11 @@ while True:
             clienteE = TabelaExercicios(codigo, cliente.cpf)
 
             if sistema == 1:
-                clienteE.fazerTabela(codigo)
+                diaSemana = int(input('Dia da semana do treino: \n|1| Segunda \n|2| Terça \n|3| Quarta \n|4| Quinta \n|5| Sexta \n'))
+                treino = input('Treino e repetição do dia: ')
+                print('teste1')
+                clienteE.fazerTabela(diaSemana, treino)
+                print('teste2')
             
             
             
