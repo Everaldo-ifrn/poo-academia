@@ -1,6 +1,5 @@
-path = 'C:\\Users\\20211174010034\\Desktop\\'
+path = 'C:\\Users\\joao felipe\\OneDrive\\Área de Trabalho\\dados de poo academia\\CADASTROS\\'
 #import classUsuario
-
 #self.cpf = cliente.cpf
 
 class Financias:
