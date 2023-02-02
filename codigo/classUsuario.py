@@ -1,5 +1,5 @@
 from classFinancias import Financias
-path = 'C:\\Users\\20211174010034\\Desktop\\'
+path = 'C:\\Users\\Everaldo Junior\\Desktop\\'
 
 
 class Usuario:
@@ -151,3 +151,10 @@ class Usuario:
                     print('CADASTRO CANCELADO...TAXA PENDENDTE...')        
         except:
             print('NAO HÁ DADOS RELACIONADOS A ESSE CADASTRO!')
+
+#ISSO FOI TESTE, APAGUE ANTES DE SALVAR !!!
+
+#l = ['oi', 'tudo']
+#r = ['bem', 'qb']
+#l.insert(0,r)
+#print(l)
