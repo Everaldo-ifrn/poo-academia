@@ -1,5 +1,5 @@
 from classFinancias import Financias
-path = 'C:\\Users\\Everaldo Junior\\Desktop\\'
+path = 'C:\\Users\\20211174010034\\Desktop\\'
 
 
 class Usuario:
