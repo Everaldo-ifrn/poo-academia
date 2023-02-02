@@ -1,5 +1,5 @@
 from classUsuario import Usuario
-from exercicios import TabelaExercicios
+from classExercicios import TabelaExercicios
 from classFinancias import Financias
 
 
@@ -59,9 +59,15 @@ while True:
                 valorT = float(input('Informe o valor da taxa>'))
                 clienteF.darBaixaTaxa(valorT)
 
-        elif sistemaPrincipal == 3:
+        elif sistemaPrincipal == 3: ##########################################################################
+            sistema = int(input('O que deseja fazer... \n|1| Fazer tabela de exercício \n|2| Alterar tabela de exercício \n|3| Ver tabela de exercício \n'))
             codigo = int(input('Digite código da conta> '))
             clienteE = TabelaExercicios(codigo, cliente.cpf)
+
+            if sistema == 1:
+                clienteE.fazerTabela(codigo)
+            
+            
             
 
      except ValueError:
