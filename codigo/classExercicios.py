@@ -1,5 +1,5 @@
 from classUsuario import Usuario
-path = 'C:\\Users\\joao felipe\\OneDrive\\Área de Trabalho\\dados de poo academia\\TABELAS\\'
+path = 'C:\\Users\\Everaldo Junior\\Desktop\\'
 
 #Usuario.cpf
 class TabelaExercicios:
@@ -25,35 +25,45 @@ class TabelaExercicios:
         self.treino = treino
         self.objetivo = objetivo
         tabelas = [[],[],[],[],[],[],[]]
-        tabelas[0] = (f'CODIGO: {self.codigo}\n')
-        tabelas[1] = (f'OBJETIVO: {self.objetivo}\n')
-        print(tabelas)
-    
-            
-        if self.diaSemana == 1:
-            tabelas.insert(2, (f'SEGUNDA:{self.treino}\n'))
-              
-            
-        elif self.diaSemana == 2:
-            tabelas.insert(3, (f'TERÇA:{self.treino}\n'))
-               
+        while True:               #Coloquie de novo o while para acabar com o erro de escrever codigo e objetivo no final
+            if diaSemana == 0:        #a cada dia ele está escrevendo codigo e objetivo e não a cada semana!
+                break
+
+            tabelas[0] = (f'CODIGO: {self.codigo}\n')
+            tabelas[1] = (f'OBJETIVO: {self.objetivo}\n')
+        
                 
-        elif self.diaSemana == 3:
-            tabelas.insert(4, (f'QUARTA:{self.treino}\n'))
-               
+            if self.diaSemana == 1:
+                tabelas.insert(2, (f'SEGUNDA:{self.treino}\n'))
                 
-        elif self.diaSemana == 4:
-            tabelas.insert(5, (f'QUINTA:{self.treino}\n'))
                 
-            
-        elif self.diaSemana == 5:
-            tabelas.insert(6, (f'SEXTA:{self.treino}\n'))
-            
-        elif diaSemana == 0:
-            with open(path + str(self.codigo) + '.txt', 'a') as arquivo:
-                for i in tabelas:
+            elif self.diaSemana == 2:
+                tabelas.insert(3, (f'TERÇA:{self.treino}\n'))
+                
+                    
+            elif self.diaSemana == 3:
+                tabelas.insert(4, (f'QUARTA:{self.treino}\n'))
+                
+                    
+            elif self.diaSemana == 4:
+                tabelas.insert(5, (f'QUINTA:{self.treino}\n'))
+                    
+                
+            elif self.diaSemana == 5:
+                tabelas.insert(6, (f'SEXTA:{self.treino}\n'))
+
+
+        
+
+            print(tabelas)
+            with open(path + str(self.codigo) + '.txt', 'r') as arquivo:          #lendo o que já existe
+                linhas = arquivo.readlines()
+
+            with open(path + str(self.codigo) + '.txt', 'w') as arquivo:          #reescrevendo o que já existe
+                for linha in linhas:
+                    arquivo.write(linha)  
+
+                for i in tabelas:                                                 #escrevendo com novo
                     if i != []:
                         arquivo.write(i)
-        
-                        
-        #O BuUG QUE ESTAR OCORRENDO NAOOOO TEM LOGICA NENHUMA!!! 1:20 JA E EU N DESENROLEI, VOU DORMIR
+            break
