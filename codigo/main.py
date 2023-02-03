@@ -46,10 +46,10 @@ while True:
             else:
                 print('>> Você digitou algo fora da lista dada, tente novamente! <<')
         elif sistemaPrincipal == 2: #Nao ta funcionando como eu queria, nao ocorre o codigo do outro arquivo 
-            
+                
             clienteF = Financias(cliente.cpf)
             sistema = int(input('O que deseja fazer... \n[1] Dar baixa na fatura\n[2] Dar baixa em uma taxa\n>'))
-            
+                
             if sistema == 1:
                 mes = int(input('digite o numero do mes 1, 2, 3...>'))
                 valor = float(input('Informe o valor da mensalidade>'))
@@ -58,11 +58,14 @@ while True:
             elif sistema == 2:
                 valorT = float(input('Informe o valor da taxa>'))
                 clienteF.darBaixaTaxa(valorT)
+        
 
         elif sistemaPrincipal == 3: ##########################################################################
             sistema = int(input('O que deseja fazer... \n|1| Fazer tabela de exercício \n|2| Alterar tabela de exercício \n|3| Ver tabela de exercício \n'))
             codigo = int(input('Digite código da conta> '))
             clienteE = TabelaExercicios(codigo, cliente.cpf)
+
+                
 
             if sistema == 1:
                 print('OBJETIVO...|Esmagrecer(1)|-|Ganhar massa muscular(2)|-|Definir os muscuslos(3)|')
@@ -84,4 +87,6 @@ while True:
                         treino = input('Treino e repetição do dia: ')
                         clienteE.fazerTabela(diaSemana, treino, objetivo)
      except ValueError:
-        print('>> Você digitou algo fora da lista dada, tente novamente! <<')
+         print('>> Você digitou algo fora da lista dada, tente novamente! <<')
+
+     
