@@ -1,12 +1,11 @@
 from classFinancias import Financias
-path = 'C:\\Users\\joao felipe\\OneDrive\\Área de Trabalho\\dados de poo academia\\CADASTROS\\'
-
+import path
 
 class Usuario:
     def __init__(self, cpf):          #Verificar se existe cadastro
         self.cpf = cpf
         try:
-            with open(path+self.cpf+'.txt', 'r') as arquivo:
+            with open(path.pathC+self.cpf+'.txt', 'r') as arquivo:
                 lista = arquivo.readlines()
                 r = ''                             #r é a resposta se tá ou não cadastrado
                 for linhas in lista:
@@ -34,7 +33,7 @@ class Usuario:
         self.plano = plano
         self.mensalidade = mensalidade
 
-        with open(path+self.cpf+'.txt', 'a') as arquivo:
+        with open(path.pathC+self.cpf+'.txt', 'a') as arquivo:
             arquivo.write('CPF: ' + str(self.cpf) + '\n')
             arquivo.write('Nome: ' + self.nome + '\n')
             arquivo.write('Telefone: ' + self.telefone + '\n')
@@ -55,7 +54,7 @@ class Usuario:
 
     def alterarDados(self, cpf):
         try: 
-            with open(path + cpf + '.txt', 'r') as arquivo:
+            with open(path.pathC + cpf + '.txt', 'r') as arquivo:
                 linhas = arquivo.readlines()
                 lista = []
                 dados = ['Nome', 'Telefone', 'Endereço', 'Altura', 'Peso', 'Medições', 'PLANO'] #criei essa lista pq fica mais facil o código usando for
@@ -85,7 +84,7 @@ class Usuario:
                             lista.append(linha)  
                         c = c + 1
                     arquivo.close()
-                    with open(path + cpf + '.txt', 'w') as arquivo:           #Estou reescrevendo a todos os dados com o novo dado
+                    with open(path.pathC + cpf + '.txt', 'w') as arquivo:           #Estou reescrevendo a todos os dados com o novo dado
                         for l in lista:
                             arquivo.write(l)    
                 
@@ -98,7 +97,7 @@ class Usuario:
     def relatorio(self, cpf):
         self.cpf = cpf
         try:
-            with open(path+self.cpf+'.txt', 'r') as arquivo: 
+            with open(path.pathC+self.cpf+'.txt', 'r') as arquivo: 
                 lista = arquivo.readlines()
                 r = ''
                 for linhas in lista:
@@ -118,7 +117,7 @@ class Usuario:
     def cancelarCadastro(self, cpf): 
         self.cpf = cpf
         try:
-             with open(path+self.cpf+'.txt', 'r') as arquivo:
+             with open(path.pathC+self.cpf+'.txt', 'r') as arquivo:
                  lista = arquivo.readlines()
                  r = ''
                  for plano in lista:
@@ -132,20 +131,20 @@ class Usuario:
                          break
              if r == 'MENSAL':
                  import os
-                 lista_arquivos = os.listdir(path)
-                 nome = path + self.cpf + '.txt'
+                 lista_arquivos = os.listdir(path.pathC)
+                 nome = path.pathC + self.cpf + '.txt'
                  for arquivox in lista_arquivos:
                      if arquivox == self.cpf + '.txt':
                         os.remove(nome)  #aqui usamos essa biblioteca para apagar o arquivo do computador(apenas mensais que nao  atribuem taxas)
                         print('CADASTRO CANCELADO')
              elif r == 'ANUAL':          #aqui cancelamos as parcelas e atribuimos a taxa no arquivo, em finacias pode-se dar baixa
-                 with open(path+self.cpf+'.txt', 'r') as arquivo:
+                 with open(path.pathC+self.cpf+'.txt', 'r') as arquivo:
                      lista = arquivo.readlines()
                      for i in range(12):
                          lista.pop(8)
                      taxa = float(input('Informe o valor da taxa>>>'))
                      lista.append(f'TAXA: R${str(taxa)}\n')
-                 with open(path+self.cpf+'.txt', 'w') as arquivo:
+                 with open(path.pathC+self.cpf+'.txt', 'w') as arquivo:
                     for i in lista:
                          arquivo.write(i)
                     print('CADASTRO CANCELADO...TAXA PENDENDTE...')        
