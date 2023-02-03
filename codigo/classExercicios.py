@@ -1,14 +1,14 @@
 from classUsuario import Usuario
-path = 'C:\\Users\\Everaldo Junior\\Desktop\\'
+import path 
 
-#Usuario.cpf
+
 class TabelaExercicios:
     def __init__(self, codigo, cpf):
         self.codigo = codigo
         self.cpf = cpf
 
         try:
-            with open(path + str(self.codigo) + '.txt', 'r') as arquivo:
+            with open(path.pathT + str(self.codigo) + '.txt', 'r') as arquivo:
                 linhas = arquivo.readlines()
                 linhas = linhas.split('\n')
 
@@ -56,10 +56,11 @@ class TabelaExercicios:
         
 
             print(tabelas)
-            with open(path + str(self.codigo) + '.txt', 'r') as arquivo:          #lendo o que já existe
-                linhas = arquivo.readlines()
+            with open(path.pathT + str(self.codigo) + '.txt', 'r') as arquivo:          #lendo o que já existe
+                    linhas = arquivo.readlines()
+            
 
-            with open(path + str(self.codigo) + '.txt', 'w') as arquivo:          #reescrevendo o que já existe
+            with open(path.pathT + str(self.codigo) + '.txt', 'w') as arquivo:          #reescrevendo o que já existe
                 for linha in linhas:
                     arquivo.write(linha)  
 
