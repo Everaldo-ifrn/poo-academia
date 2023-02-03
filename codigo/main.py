@@ -65,13 +65,23 @@ while True:
             clienteE = TabelaExercicios(codigo, cliente.cpf)
 
             if sistema == 1:
+                print('OBJETIVO...|Esmagrecer(1)|-|Ganhar massa muscular(2)|-|Definir os muscuslos(3)|')
+                objetivo = ''
+                r = int(input('>'))
+                if r == 1:
+                    objetivo = 'Esmagrecer'
+                elif r == 2:
+                    objetivo = 'Ganhar massa muscular'
+                elif r == 3:
+                    objetivo = 'definiçao de musculos'
+
                 while True:
                     diaSemana = int(input('Dia da semana do treino: \n|1| Segunda \n|2| Terça \n|3| Quarta \n|4| Quinta \n|5| Sexta\n|0| FINALIZAR\n'))
                     if diaSemana == 0:
-                        clienteE.fazerTabela(diaSemana, "NADA")
+                        clienteE.fazerTabela(diaSemana, "NADA", objetivo)
                         break
                     else:
                         treino = input('Treino e repetição do dia: ')
-                        clienteE.fazerTabela(diaSemana, treino)
+                        clienteE.fazerTabela(diaSemana, treino, objetivo)
      except ValueError:
         print('>> Você digitou algo fora da lista dada, tente novamente! <<')
