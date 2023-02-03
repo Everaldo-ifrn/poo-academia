@@ -1,12 +1,10 @@
-path = 'C:\\Users\\joao felipe\\OneDrive\\Área de Trabalho\\dados de poo academia\\CADASTROS\\'
-#import classUsuario
-#self.cpf = cliente.cpf
+import path
 
 class Financias:
     def __init__(self, cpf):
         self.cpf = cpf 
         try:
-            with open(path + self.cpf + '.txt', 'r') as arquivo: #aqui estou vendo se existe cadastro
+            with open(path.pathC + self.cpf + '.txt', 'r') as arquivo: #aqui estou vendo se existe cadastro
                 linhas = arquivo.readlines()
                 r = ''
                 for dados in linhas:
@@ -34,7 +32,7 @@ class Financias:
         self.mes = mes
         self.valorPago = valorPago
         try:
-            with open(path + self.cpf + '.txt', 'r') as arquivo:
+            with open(path.pathC + self.cpf + '.txt', 'r') as arquivo:
                 linhas = arquivo.readlines()
                 cont = -1
                 mesAnterior = self.mes - 1
@@ -59,7 +57,7 @@ class Financias:
             elif achei == 'tem': #sobrecrevendo no arquivo com a fatura dada baixa
                 linhas.pop(cont)
                 linhas.insert(cont, (f'Més-{str(self.mes)}-PAGO\n'))  
-                with open(path + self.cpf + '.txt', 'w') as arquivo:
+                with open(path.pathC + self.cpf + '.txt', 'w') as arquivo:
                     for i in linhas:
                         arquivo.write(i)
                     print('mensalidade dada baixa com sucesso!')
@@ -75,7 +73,7 @@ class Financias:
     
     def darBaixaTaxa(self, valorPago):
         self.valorPago = valorPago
-        with open(path + self.cpf + ".txt", 'r') as arquivo:
+        with open(path.pathC + self.cpf + ".txt", 'r') as arquivo:
             linhas = arquivo.readlines()
             achei = ''
             if linhas[8] == (f'TAXA: R${valorPago}\n'): #aqui achei melhor verificar na pspsiçao que a gente definiu que a taxa estaria
@@ -85,8 +83,8 @@ class Financias:
         if achei == 'taxa':
             import os
             arquivo.close()
-            nome = path + self.cpf + '.txt'
-            lista_arquivo = os.listdir(path)
+            nome = path.pathC + self.cpf + '.txt'
+            lista_arquivo = os.listdir(path.pathC)
             for arquivoo in lista_arquivo:
                 if arquivoo == self.cpf + '.txt':
                     os.remove(nome)
