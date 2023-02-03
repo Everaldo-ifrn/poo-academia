@@ -1,5 +1,5 @@
 from classUsuario import Usuario
-path = 'C:\\Users\\joao felipe\\OneDrive\\Área de Trabalho\\dados de poo academia\\TABELAS\\'
+path = 'C:\\Users\\Everaldo Junior\\Desktop\\'
 
 #Usuario.cpf
 class TabelaExercicios:
@@ -49,8 +49,28 @@ class TabelaExercicios:
                 tabelas.insert(5, f'SABADO:{self.treino}\n')
                 break
             elif diaSemana == 0:
-                with open(path + str(self.codigo) + '.txt', 'a') as arquivo:
-                    for i in tabelas:
-                        if i != []:
-                            arquivo.write(i)
+                ##############################################
+                #with open(path + str(self.codigo) + '.txt', 'r') as arquivo:
+                #    linhas = arquivo.readlines()
+
+                #with open(path + str(self.codigo) + '.txt', 'a') as arquivo:
+                #    arquivo.write('1234\n')
+                #    pass
+                
+                """with open(path + str(self.codigo) + '.txt', 'w') as arquivo:     #Reescrevendo...
+                    arquivo.write(self.cpf + '\n')
+                    #arquivo.write(str(self.codigo) + '\n')
+                    for linha in linhas:
+                        arquivo.write(linha)"""
+                ##############################################
+
                 break
+#Falta colocar o codigo no começo de cada semana de treino!
+
+        with open(path + str(self.codigo) + '.txt', 'a') as arquivo:
+            #arquivo.write('1234\n') ##################
+            for i in tabelas:
+                if i != []:
+                    arquivo.write(i)
+            #linhas = arquivo.readlines()
+            #print(linhas)
