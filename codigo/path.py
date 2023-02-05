@@ -1,2 +1,3 @@
-pathC = 'C:\\Users\\20211174010031\\Downloads\\CADASTROS\\'
-pathT = 'C:\\Users\\20211174010031\\Downloads\\TABELAS\\'
+pathC = 'C:\\Users\\Everaldo Junior\\Desktop\\CADASTROS\\'
+pathT = 'C:\\Users\\Everaldo Junior\\Desktop\\TABELAS\\'
+#Não está criando essas pastas "CADASTROS" E "TABELAS", não sei se é só no meu notebook
