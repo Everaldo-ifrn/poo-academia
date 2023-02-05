@@ -3,6 +3,7 @@ from classExercicios import TabelaExercicios
 from classFinancias import Financias
 
 
+c = 1
 while True:
      cpf = input('- Seja bem vindo ao sistema, por favor digite o CPF do cliente> ')
      cliente = Usuario(cpf)
@@ -60,7 +61,7 @@ while True:
                 clienteF.darBaixaTaxa(valorT)
         
 
-        elif sistemaPrincipal == 3: ##########################################################################
+        elif sistemaPrincipal == 3: #TABELAS
             sistema = int(input('O que deseja fazer... \n|1| Fazer tabela de exercício \n|2| Alterar tabela de exercício \n|3| Ver tabela de exercício \n'))
             codigo = int(input('Digite código da conta> '))
             clienteE = TabelaExercicios(codigo, cliente.cpf)
@@ -68,9 +69,7 @@ while True:
                 
 
             if sistema == 1:
-                print('OBJETIVO...|Esmagrecer(1)|-|Ganhar massa muscular(2)|-|Definir os muscuslos(3)|')
-                objetivo = ''
-                r = int(input('>'))
+                r = int(input('Qual objetivo do treino? \n|1| Esmagrecer \n|2| Ganhar massa muscular \n|3| Definir os muscuslos \n> '))
                 if r == 1:
                     objetivo = 'Esmagrecer'
                 elif r == 2:
@@ -78,15 +77,15 @@ while True:
                 elif r == 3:
                     objetivo = 'definiçao de musculos'
 
-                while True:
-                    diaSemana = int(input('Dia da semana do treino: \n|1| Segunda \n|2| Terça \n|3| Quarta \n|4| Quinta \n|5| Sexta\n|0| FINALIZAR\n'))
-                    if diaSemana == 0:
-                        clienteE.fazerTabela(diaSemana, "NADA", objetivo)
-                        break
-                    else:
-                        treino = input('Treino e repetição do dia: ')
-                        clienteE.fazerTabela(diaSemana, treino, objetivo)
+                semana = ['Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta']    #Dias que a academia "Normal" funciona
+                semanaTreino = []               #Lista dos dias que o usuário vai treinar
+                for dia in semana:          #criei a lista só com os dias que ele vai treinar
+                    re = int(input(f'Você vai treinar na {dia}? \n|1| Sim \n|2| Não \n> '))
+                    if re == 1:
+                        treino = input('Digite o treino e a repetição desse dia, (exemplo: Perna, 15) \n> ')
+                        semanaTreino.append(dia +': '+ treino)    #coloco o treino na mesma lista dos dias
+                clienteE.fazerTabela(semanaTreino, objetivo, c)
+                c = c + 1 
+                
      except ValueError:
          print('>> Você digitou algo fora da lista dada, tente novamente! <<')
-
-     
