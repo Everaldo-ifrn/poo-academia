@@ -3,7 +3,7 @@ from classExercicios import TabelaExercicios
 from classFinancias import Financias
 
 
-c = 1
+c = 0
 while True:
      cpf = input('- Seja bem vindo ao sistema, por favor digite o CPF do cliente> ')
      cliente = Usuario(cpf)
@@ -63,10 +63,8 @@ while True:
 
         elif sistemaPrincipal == 3: #TABELAS
             sistema = int(input('O que deseja fazer... \n|1| Fazer tabela de exercício \n|2| Alterar tabela de exercício \n|3| Ver tabela de exercício \n'))
-            codigo = int(input('Digite código da conta> '))
-            clienteE = TabelaExercicios(codigo, cliente.cpf)
-
-                
+            codigo = int(input('\nDigite código da conta> '))
+                         
 
             if sistema == 1:
                 r = int(input('Qual objetivo do treino? \n|1| Esmagrecer \n|2| Ganhar massa muscular \n|3| Definir os muscuslos \n> '))
@@ -77,15 +75,46 @@ while True:
                 elif r == 3:
                     objetivo = 'definiçao de musculos'
 
+                c = c + 1
+                clienteE = TabelaExercicios(codigo, cliente.cpf, c)
+
                 semana = ['Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta']    #Dias que a academia "Normal" funciona
                 semanaTreino = []               #Lista dos dias que o usuário vai treinar
                 for dia in semana:          #criei a lista só com os dias que ele vai treinar
-                    re = int(input(f'Você vai treinar na {dia}? \n|1| Sim \n|2| Não \n> '))
+                    re = int(input(f'\nVocê vai treinar na {dia}? \n|1| Sim \n|2| Não \n> '))
                     if re == 1:
-                        treino = input('Digite o treino e a repetição desse dia, (exemplo: Perna, 15) \n> ')
+                        treino = input('\nDigite o treino e a repetição desse dia, (exemplo: Perna, 15) \n> ')
                         semanaTreino.append(dia +': '+ treino)    #coloco o treino na mesma lista dos dias
-                clienteE.fazerTabela(semanaTreino, objetivo, c)
-                c = c + 1 
+                
+                clienteE.fazerTabela(semanaTreino, objetivo)
+                
+
+            elif sistema == 2:
+                tabelaAlterar = int(input('\nQual tabela você quer alterar? (Exemplo: Semana 1, digite (1)) \n> '))
+                clienteE = TabelaExercicios(codigo, cliente.cpf, c)                
+                r = int(input('Qual objetivo do treino? \n|1| Esmagrecer \n|2| Ganhar massa muscular \n|3| Definir os muscuslos \n> '))
+                if r == 1:
+                    objetivo = 'Esmagrecer'
+                elif r == 2:
+                    objetivo = 'Ganhar massa muscular'
+                elif r == 3:
+                    objetivo = 'definiçao de musculos'
+
+                semana = ['Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta']    #Dias que a academia "Normal" funciona
+                semanaTreinoNova = []               #Lista dos dias que o usuário vai treinar
+                for dia in semana:          #criei a lista só com os dias que ele vai treinar
+                    re = int(input(f'\nVocê vai treinar na {dia}? \n|1| Sim \n|2| Não \n> '))
+                    if re == 1:
+                        treino = input('\nDigite o treino e a repetição desse dia, (exemplo: Perna, 15) \n> ')
+                        semanaTreinoNova.append(dia +': '+ treino)    #coloco o treino na mesma lista dos dias
+    
+                
+                clienteE.alterarTabela(tabelaAlterar, semanaTreinoNova, objetivo)
+
+
+            elif sistema == 3:
+                clienteE.verTabela() 
                 
      except ValueError:
          print('>> Você digitou algo fora da lista dada, tente novamente! <<')
+#ERRO: Quando altero a semana de treino e crio outra, o numero de semanas tipo "rezeta", não continua a ordem!
