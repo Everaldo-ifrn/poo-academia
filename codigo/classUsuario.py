@@ -33,7 +33,7 @@ class Usuario:
         self.plano = plano
         self.mensalidade = mensalidade
 
-        with open(path.pathC+self.cpf+'.txt', 'a') as arquivo:
+        with open(path.pathC+self.cpf+'.txt', 'w') as arquivo:       #troquei de 'a' para 'w', pois dava erro se não existisse o arquivo
             arquivo.write('CPF: ' + str(self.cpf) + '\n')
             arquivo.write('Nome: ' + self.nome + '\n')
             arquivo.write('Telefone: ' + self.telefone + '\n')
