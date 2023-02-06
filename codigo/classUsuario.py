@@ -137,7 +137,20 @@ class Usuario:
                      if arquivox == self.cpf + '.txt':
                         os.remove(nome)  #aqui usamos essa biblioteca para apagar o arquivo do computador(apenas mensais que nao  atribuem taxas)
                         print('CADASTRO CANCELADO')
+
+                 lista_arquivosT = os.listdir(path.pathT)
+                 nome = path.pathT + self.cpf + '.txt'
+                 for arquivox in lista_arquivosT:
+                     if arquivox == self.cpf + '.txt':
+                        os.remove(nome)
+
              elif r == 'ANUAL':          #aqui cancelamos as parcelas e atribuimos a taxa no arquivo, em finacias pode-se dar baixa
+                 lista_arquivosT = os.listdir(path.pathT)
+                 nome = path.pathT + self.cpf + '.txt'
+                 for arquivox in lista_arquivosT:
+                     if arquivox == self.cpf + '.txt':
+                        os.remove(nome)  
+
                  with open(path.pathC+self.cpf+'.txt', 'r') as arquivo:
                      lista = arquivo.readlines()
                      for i in range(12):
