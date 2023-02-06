@@ -3,13 +3,13 @@ import path
 
 
 class TabelaExercicios:
-    def __init__(self, codigo, cpf, c):
-        self.codigo = codigo
+    def __init__(self, cpf, c):
+        #self.codigo = codigo
         self.cpf = cpf
         self.c = c  #nº de cada semana de treino criada
 
         try:
-            with open(path.pathT + str(self.codigo) + '.txt', 'r') as arquivo:
+            with open(path.pathT + str(self.cpf) + '.txt', 'r') as arquivo:
                 linhas = arquivo.readlines()
 
                 for linha in linhas:
@@ -33,10 +33,10 @@ class TabelaExercicios:
         self.objetivo = objetivo
 
         try:
-            with open(path.pathT + str(self.codigo) + '.txt', 'r') as arquivo:
+            with open(path.pathT + str(self.cpf) + '.txt', 'r') as arquivo:
                 linhas = arquivo.readlines()
             
-            with open(path.pathT + str(self.codigo) + '.txt', 'w') as arquivo:
+            with open(path.pathT + str(self.cpf) + '.txt', 'w') as arquivo:
                 for linha in linhas:
                     arquivo.write(linha)
                 arquivo.write('Semana: ' + str(self.c) + '\n')
@@ -46,7 +46,7 @@ class TabelaExercicios:
                 
 
         except:                      #Quando for a 1ª lista criada
-            with open(path.pathT + str(self.codigo) + '.txt', 'w') as arquivo:
+            with open(path.pathT + str(self.cpf) + '.txt', 'w') as arquivo:
                 arquivo.write('CPF: '+ self.cpf + '\n')
                 arquivo.write('Semana: ' + str(self.c) + '\n')
                 arquivo.write('Objetivo: ' + self.objetivo + '\n')
@@ -58,7 +58,7 @@ class TabelaExercicios:
 
     def verTabela(self):
         try:
-            with open(path.pathT + str(self.codigo) + '.txt', 'r') as arquivo:
+            with open(path.pathT + str(self.cpf) + '.txt', 'r') as arquivo:
                 linhas = arquivo.readlines()
                 for linha in linhas:
                     print(linha)
@@ -71,7 +71,7 @@ class TabelaExercicios:
         self.semanaTreinoNova = semanaTreinoNova     #nova semana 
         self.objetivo = objetivo 
         try:
-            with open(path.pathT + str(self.codigo) + '.txt', 'r') as arquivo:
+            with open(path.pathT + str(self.cpf) + '.txt', 'r') as arquivo:
                 linhas = arquivo.readlines()
                 i = 0       #índice da linha da semana que será apagada
                 for linha in linhas:
@@ -94,10 +94,12 @@ class TabelaExercicios:
                 linhas.insert(i, 'Objetivo: ' + str(self.objetivo) + '\n')
                 linhas.insert(i, 'Semana: ' + str(self.tabelaAlterar) + '\n')
                     
-            with open(path.pathT + str(self.codigo) + '.txt', 'w') as arquivo:
+            with open(path.pathT + str(self.cpf) + '.txt', 'w') as arquivo:
                 for linha in linhas:
                     arquivo.write(linha)
             print('>> Tabela Alterada com sucesso! <<')
 
         except:
             print('>> Tabela de exercício não existe! <<')
+
+    
