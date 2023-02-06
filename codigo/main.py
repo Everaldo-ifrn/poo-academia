@@ -46,7 +46,7 @@ while True:
                 break
             else:
                 print('>> Você digitou algo fora da lista dada, tente novamente! <<')
-        elif sistemaPrincipal == 2: #Nao ta funcionando como eu queria, nao ocorre o codigo do outro arquivo 
+        elif sistemaPrincipal == 2:
                 
             clienteF = Financias(cliente.cpf)
             sistema = int(input('O que deseja fazer... \n[1] Dar baixa na fatura\n[2] Dar baixa em uma taxa\n>'))
@@ -63,7 +63,7 @@ while True:
 
         elif sistemaPrincipal == 3: #TABELAS
             sistema = int(input('O que deseja fazer... \n|1| Fazer tabela de exercício \n|2| Alterar tabela de exercício \n|3| Ver tabela de exercício \n'))
-            codigo = int(input('\nDigite código da conta> '))
+            #codigo = int(input('\nDigite código da conta> '))
                          
 
             if sistema == 1:
@@ -76,7 +76,7 @@ while True:
                     objetivo = 'definiçao de musculos'
 
                 c = c + 1
-                clienteE = TabelaExercicios(codigo, cliente.cpf, c)
+                clienteE = TabelaExercicios(cliente.cpf, c)
 
                 semana = ['Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta']    #Dias que a academia "Normal" funciona
                 semanaTreino = []               #Lista dos dias que o usuário vai treinar
@@ -91,7 +91,7 @@ while True:
 
             elif sistema == 2:
                 tabelaAlterar = int(input('\nQual tabela você quer alterar? (Exemplo: Semana 1, digite (1)) \n> '))
-                clienteE = TabelaExercicios(codigo, cliente.cpf, c)                
+                clienteE = TabelaExercicios(cliente.cpf, c)                
                 r = int(input('Qual objetivo do treino? \n|1| Esmagrecer \n|2| Ganhar massa muscular \n|3| Definir os muscuslos \n> '))
                 if r == 1:
                     objetivo = 'Esmagrecer'
