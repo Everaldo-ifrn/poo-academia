@@ -54,7 +54,7 @@ class TabelaExercicios:
                     arquivo.write(dia + '\n')
         self.c = self.c + 1     #nº das semanas
 
-        print('Tabela de exercício criada!')
+        print('>> Tabela de exercício criada! << \n')
 
     def verTabela(self):
         try:
@@ -63,7 +63,7 @@ class TabelaExercicios:
                 for linha in linhas:
                     print(linha)
         except:
-            print('>> Tabela de exercício não existe! <<')
+            print('>> Não foi possivel ver a Tabela de exercício, pois ela não existe! << \n')
 
 
     def alterarTabela(self, tabelaAlterar, semanaTreinoNova, objetivo):
@@ -100,6 +100,4 @@ class TabelaExercicios:
             print('>> Tabela Alterada com sucesso! <<')
 
         except:
-            print('>> Tabela de exercício não existe! <<')
-
-    
+            print('>> Não foi possivel alterar a Tabela de exercício, pois ela não existe! << \n')
