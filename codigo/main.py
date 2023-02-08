@@ -9,7 +9,7 @@ while True:
      cliente = Usuario(cpf)
      print(' ')
      try:
-        sistemaPrincipal = int(input('\nPara que area do sistema deseja se dirigir: |1| CADASTROS \n|2| FINANCIAS \n|3| TABELAS \n> ')) 
+        sistemaPrincipal = int(input('\nPara que area do sistema deseja se dirigir: \n|1| CADASTROS \n|2| FINANCIAS \n|3| TABELAS \n> ')) 
         if sistemaPrincipal == 1:
             sistema = int(input('\nO que deseja fazer...\n[1] para fazer cadastro:\n[2] para alterar dados de cadastro\n[3] para ver relatorio de cadastro\n[4] para cancelar cadastro\n[5] para finalizar sistema\n>'))
             print(' ')
@@ -63,8 +63,7 @@ while True:
 
         elif sistemaPrincipal == 3: #TABELAS
             sistema = int(input('\nO que deseja fazer... \n|1| Fazer tabela de exercício \n|2| Alterar tabela de exercício \n|3| Ver tabela de exercício \n'))
-            #codigo = int(input('\nDigite código da conta> '))
-                         
+                     
 
             if sistema == 1:
                 r = int(input('\nQual objetivo do treino? \n|1| Esmagrecer \n|2| Ganhar massa muscular \n|3| Definir os muscuslos \n> '))
@@ -74,9 +73,8 @@ while True:
                     objetivo = 'Ganhar massa muscular'
                 elif r == 3:
                     objetivo = 'definiçao de musculos'
-
                 c = c + 1
-                clienteE = TabelaExercicios(cliente.cpf, c)
+                clienteE = TabelaExercicios(cliente.cpf, c) 
 
                 semana = ['Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta']    #Dias que a academia "Normal" funciona
                 semanaTreino = []               #Lista dos dias que o usuário vai treinar
@@ -118,4 +116,3 @@ while True:
                 
      except ValueError:
          print('\n>> Você digitou algo fora da lista dada, tente novamente! <<\n')
-#ERRO: Quando altero a semana de treino e crio outra, o numero de semanas tipo "rezeta", não continua a ordem!
