@@ -76,7 +76,7 @@ class Financias:
         with open(path.pathC + self.cpf + ".txt", 'r') as arquivo:
             linhas = arquivo.readlines()
             achei = ''
-            if linhas[8] == (f'TAXA: R${valorPago}\n'): #aqui achei melhor verificar na pspsiçao que a gente definiu que a taxa estaria
+            if linhas[8] == (f'TAXA: R${valorPago}\n'): #aqui achei melhor verificar na posiçao que a gente definiu que a taxa estaria
                 achei = "taxa"
             else:
                achei = 'n taxa'
