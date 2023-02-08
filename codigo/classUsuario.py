@@ -46,7 +46,7 @@ class Usuario:
                      arquivo.write('PLANO: ANUAL\n')
                      for i in range(1, 13):
                           arquivo.write(f'Més-{i}-R${self.mensalidade}\n')
-            if self.plano == 2:
+            elif self.plano == 2:
                      arquivo.write('PLANO: MENSAL\n')
                      for i in range(1, 13):
                          arquivo.write(f'Més-{i}-R${self.mensalidade}\n')
@@ -126,7 +126,7 @@ class Usuario:
                          r = 'MENSAL'
                          arquivo.close()
                          break
-                     if lista2[1] == 'ANUAL\n':
+                     elif lista2[1] == 'ANUAL\n':
                          r = 'ANUAL'
                          break
              if r == 'MENSAL':
