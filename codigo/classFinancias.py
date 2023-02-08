@@ -23,9 +23,9 @@ class Financias:
                     elif lista2[1] == 'ANUAL\n':
                         print('Plano anual...')
             elif r == 'ntem':
-                print('Nao há cadastro com os dados informados!')
+                print('>> Nao há cadastro com os dados informados! <<')
         except:
-            print('Nao há cadastro com os dados informados!')
+            print('>> Nao há cadastro com os dados informados! <<')
     
 
     def darBaixaFatura(self, mes, valorPago):
@@ -53,22 +53,22 @@ class Financias:
                     else:
                         achei = 'ntem'
             if achei == 'pendente':
-                print('Mes anterior com pendencia!')
+                print('>> Mes anterior com pendencia! <<')
             elif achei == 'tem': #sobrecrevendo no arquivo com a fatura dada baixa
                 linhas.pop(cont)
                 linhas.insert(cont, (f'Més-{str(self.mes)}-PAGO\n'))  
                 with open(path.pathC + self.cpf + '.txt', 'w') as arquivo:
                     for i in linhas:
                         arquivo.write(i)
-                    print('mensalidade dada baixa com sucesso!')
+                    print('>> mensalidade dada baixa com sucesso! <<')
             elif achei == 'tempago':
-                print('Mesnsalidade já tá paga!')
+                print('>> Mensalidade já tá paga! <<')
             elif achei == 'ntem':
-                print('Dados informados errados...')
+                print('>> Dados informados errados... <<')
             elif achei == 'taxaAnual':
-                print('Há uma taxa de contrato anual!')
+                print('>> Há uma taxa de contrato anual! <<')
         except:
-            print('Erro...')
+            print('>> Erro... <<')
     
     
     def darBaixaTaxa(self, valorPago):
@@ -88,6 +88,6 @@ class Financias:
             for arquivoo in lista_arquivo:
                 if arquivoo == self.cpf + '.txt':
                     os.remove(nome)
-                    print('TAXA QUITADA')
+                    print('>> TAXA QUITADA! <<')
         elif achei == 'n taxa':
-            print('Nao há taxa...')
+            print('>> Nao há taxa... <<')
