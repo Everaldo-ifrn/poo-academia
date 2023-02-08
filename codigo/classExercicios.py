@@ -63,7 +63,8 @@ class TabelaExercicios:
                 for linha in linhas:
                     print(linha)
         except:
-            print('>> Não foi possivel ver a Tabela de exercício, pois ela não existe! << \n')
+            pass
+            # print('>> Não foi possivel ver a Tabela de exercício, pois ela não existe! << \n')
 
 
     def alterarTabela(self, tabelaAlterar, semanaTreinoNova, objetivo):
