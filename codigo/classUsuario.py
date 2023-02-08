@@ -16,12 +16,12 @@ class Usuario:
                     else:
                         r == 'nao'
                 if r == 'sim':
-                     print('Usuário já cadastrado no sistema!')
+                     print('\n>> Usuário já cadastrado no sistema! <<\n')
                 if r == 'nao':
-                     print('Nao há cadastro com os dados informados!')
+                     print('\n>> Nao há cadastro com os dados informados! <<\n')
                     
         except: 
-            print('Nao há cadastro com os dados informados!')
+            print('\n>> Nao há cadastro com os dados informados! <<\n')
             
     def fazerCadastro(self, nome, telefone, endereco, altura, peso, medicoes, plano, mensalidade):
         self.nome = nome
@@ -68,11 +68,11 @@ class Usuario:
                         break
 
                 if re == 'Sim':
-                    r = int(input('O que você quer mudar? \n|1| Nome \n|2| Telefone \n|3| Endereço \n|4| Altura \n|5| Peso \n|6| Medições \n|7| Plano \n'))
+                    r = int(input('\nO que você quer mudar? \n|1| Nome \n|2| Telefone \n|3| Endereço \n|4| Altura \n|5| Peso \n|6| Medições \n|7| Plano \n> '))
                     if r > 8 or r < 1:
                         raise Exception()             #se ele digitar um nº maior que 7 e menor q 1 vai gera um erro
                     
-                    novoDado = input('Qual é o novo dado? \n')
+                    novoDado = input('\nQual é o novo dado? \n> ')
                     for linha in linhas:
                         if r+1 == (c+1):                     #Estou mudando o dado que ele escolheu
                             linha = linha.split(': ')
@@ -89,9 +89,9 @@ class Usuario:
                             arquivo.write(l)    
                 
                 else:
-                    print('Não há dados cadastro!') 
+                    print('\n>> Não há dados cadastro! <<\n') 
         except:
-            print('Um erro foi cometido, tente novamente!')
+            print('\n>> Um erro foi cometido, tente novamente! <<\n')
 
 
     def relatorio(self, cpf):
@@ -109,9 +109,9 @@ class Usuario:
                     for i in lista: 
                         print(i)
                 else:
-                    print('Dados nao encontrados!')
+                    print('\n>> Dados nao encontrados! <<\n')
         except:
-             print('Nao há cadastro com os dados informados!') #Se os dados forem errados entao nao irá abrir nenhum arquivo
+             print('\n>> Nao há cadastro com os dados informados! <<\n') #Se os dados forem errados entao nao irá abrir nenhum arquivo
     
 
     def cancelarCadastro(self, cpf): 
@@ -136,7 +136,7 @@ class Usuario:
                  for arquivox in lista_arquivos:
                      if arquivox == self.cpf + '.txt':
                         os.remove(nome)  #aqui usamos essa biblioteca para apagar o arquivo do computador(apenas mensais que nao  atribuem taxas)
-                        print('CADASTRO CANCELADO')
+                        print('\n>> CADASTRO CANCELADO! <<\n')
 
                  lista_arquivosT = os.listdir(path.pathT)
                  nome = path.pathT + self.cpf + '.txt'
@@ -145,6 +145,7 @@ class Usuario:
                         os.remove(nome)
 
              elif r == 'ANUAL':          #aqui cancelamos as parcelas e atribuimos a taxa no arquivo, em finacias pode-se dar baixa
+                 import os
                  lista_arquivosT = os.listdir(path.pathT)
                  nome = path.pathT + self.cpf + '.txt'
                  for arquivox in lista_arquivosT:
@@ -155,18 +156,11 @@ class Usuario:
                      lista = arquivo.readlines()
                      for i in range(12):
                          lista.pop(8)
-                     taxa = float(input('Informe o valor da taxa>>>'))
+                     taxa = float(input('\nInforme o valor da taxa \n> '))
                      lista.append(f'TAXA: R${str(taxa)}\n')
                  with open(path.pathC+self.cpf+'.txt', 'w') as arquivo:
                     for i in lista:
                          arquivo.write(i)
-                    print('CADASTRO CANCELADO...TAXA PENDENDTE...')        
-        except:
-            print('NAO HÁ DADOS RELACIONADOS A ESSE CADASTRO!')
-
-#ISSO FOI TESTE, APAGUE ANTES DE SALVAR !!!
-
-#l = ['oi', 'tudo']
-#r = ['bem', 'qb']
-#l.insert(0,r)
-#print(l)
+                    print('\n>> CADASTRO CANCELADO...TAXA PENDENDTE... <<\n')        
+        except ValueError:
+            print('\n>> NAO HÁ DADOS RELACIONADOS A ESSE CADASTRO! << \n')
