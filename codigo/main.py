@@ -9,7 +9,7 @@ while True:
      cliente = Usuario(cpf)
      print(' ')
      try:
-        sistemaPrincipal = int(input('\nPara que area do sistema deseja se dirigir: \n|1| CADASTROS \n|2| FINANCIAS \n|3| TABELAS \n> ')) 
+        sistemaPrincipal = int(input('\nPara que area do sistema deseja se dirigir: \n|1| CADASTROS \n|2| FINANCIAS \n|3| TABELAS \n|4| NADA\n> ')) 
         if sistemaPrincipal == 1:
             sistema = int(input('\nO que deseja fazer...\n[1] para fazer cadastro:\n[2] para alterar dados de cadastro\n[3] para ver relatorio de cadastro\n[4] para cancelar cadastro\n[5] para finalizar sistema\n>'))
             print(' ')
@@ -45,7 +45,7 @@ while True:
                 print('\nAte mais...')
                 break
             else:
-                print('\n>> Você digitou algo fora da lista dada, tente novamente! << \n')
+                print('\n>> Você digitou algo fora da lista dada, tente novamente! <<')
         elif sistemaPrincipal == 2:
                 
             clienteF = Financias(cliente.cpf)
@@ -113,6 +113,16 @@ while True:
             elif sistema == 3:
                 clienteE = TabelaExercicios(cliente.cpf, c)
                 clienteE.verTabela() 
+
+            else:
+                print('\n>> Você digitou algo fora da lista dada, tente novamente! <<')
+        
+        elif sistemaPrincipal == 4:
+            print('\nAté mais!')
+            break
+
+        else:
+            print('\n>> Você digitou algo fora da lista dada, tente novamente! <<')
                 
      except ValueError:
          print('\n>> Você digitou algo fora da lista dada, tente novamente! <<\n')
