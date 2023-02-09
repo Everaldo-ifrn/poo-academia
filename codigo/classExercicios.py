@@ -21,12 +21,12 @@ class TabelaExercicios:
                         achei = 'não'
 
                 if achei == 'sim':
-                    print('>> Tabela já cadastrada! <<')
+                    print('\n>> Tabela já cadastrada! <<')
                 else:
-                    print('>> Tabela não cadastrada! <<')
+                    print('\n>> Tabela não cadastrada! <<')
 
         except:
-           print('>> Opá, tabela não cadastrada! <<')  
+           print('\n>> Opá, tabela não cadastrada! <<')  
     
     def fazerTabela(self, semanaTreino, objetivo):
         self.semanaTreino = semanaTreino
@@ -54,7 +54,7 @@ class TabelaExercicios:
                     arquivo.write(dia + '\n')
         self.c = self.c + 1     #nº das semanas
 
-        print('>> Tabela de exercício criada! << \n')
+        print('\n>> Tabela de exercício criada! << \n')
 
     def verTabela(self):
         try:
@@ -98,7 +98,7 @@ class TabelaExercicios:
             with open(path.pathT + str(self.cpf) + '.txt', 'w') as arquivo:
                 for linha in linhas:
                     arquivo.write(linha)
-            print('>> Tabela Alterada com sucesso! <<')
+            print('\n>> Tabela Alterada com sucesso! <<')
 
         except:
-            print('>> Não foi possivel alterar a Tabela de exercício, pois ela não existe! << \n')
+            print('\n>> Não foi possivel alterar a Tabela de exercício, pois ela não existe! << \n')
