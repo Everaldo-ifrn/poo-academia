@@ -18,14 +18,14 @@ class Financias:
                 for i in linhas: #aqui estou informando qual o plano
                     lista2 = i.split(': ')
                     if lista2[1] == 'MENSAL\n':
-                        print('Plano mensal...') 
+                        print('\nPlano mensal...') 
                         break
                     elif lista2[1] == 'ANUAL\n':
-                        print('Plano anual...')
+                        print('\nPlano anual...')
             elif r == 'ntem':
-                print('>> Nao há cadastro com os dados informados! <<')
+                print('\n>> Nao há cadastro com os dados informados! <<')
         except:
-            print('>> Nao há cadastro com os dados informados! <<')
+            print('\n>> Nao há cadastro com os dados informados! <<')
     
 
     def darBaixaFatura(self, mes, valorPago):
@@ -53,41 +53,45 @@ class Financias:
                     else:
                         achei = 'ntem'
             if achei == 'pendente':
-                print('>> Mes anterior com pendencia! <<')
+                print('\n>> Mes anterior com pendencia! <<')
             elif achei == 'tem': #sobrecrevendo no arquivo com a fatura dada baixa
                 linhas.pop(cont)
                 linhas.insert(cont, (f'Més-{str(self.mes)}-PAGO\n'))  
                 with open(path.pathC + self.cpf + '.txt', 'w') as arquivo:
                     for i in linhas:
                         arquivo.write(i)
-                    print('>> mensalidade dada baixa com sucesso! <<')
+                    print('\n>> mensalidade dada baixa com sucesso! <<')
             elif achei == 'tempago':
-                print('>> Mensalidade já tá paga! <<')
+                print('\n>> Mensalidade já tá paga! <<')
             elif achei == 'ntem':
-                print('>> Dados informados errados... <<')
+                print('\n>> Dados informados errados... <<')
             elif achei == 'taxaAnual':
-                print('>> Há uma taxa de contrato anual! <<')
+                print('\n>> Há uma taxa de contrato anual! <<')
         except:
-            print('>> Erro... <<')
+            print('\n>> Erro... <<\n')
     
     
     def darBaixaTaxa(self, valorPago):
         self.valorPago = valorPago
-        with open(path.pathC + self.cpf + ".txt", 'r') as arquivo:
-            linhas = arquivo.readlines()
-            achei = ''
-            if linhas[8] == (f'TAXA: R${valorPago}\n'): #aqui achei melhor verificar na posiçao que a gente definiu que a taxa estaria
-                achei = "taxa"
-            else:
-               achei = 'n taxa'
-        if achei == 'taxa':
-            import os
-            arquivo.close()
-            nome = path.pathC + self.cpf + '.txt'
-            lista_arquivo = os.listdir(path.pathC)
-            for arquivoo in lista_arquivo:
-                if arquivoo == self.cpf + '.txt':
-                    os.remove(nome)
-                    print('>> TAXA QUITADA! <<')
-        elif achei == 'n taxa':
-            print('>> Nao há taxa... <<')
+        try:
+            with open(path.pathC + self.cpf + ".txt", 'r') as arquivo:
+                linhas = arquivo.readlines()
+                achei = ''
+                if linhas[8] == (f'TAXA: R${valorPago}\n'): #aqui achei melhor verificar na posiçao que a gente definiu que a taxa estaria
+                    achei = "taxa"
+                else:
+                    achei = 'n taxa'
+            if achei == 'taxa':
+                import os
+                arquivo.close()
+                nome = path.pathC + self.cpf + '.txt'
+                lista_arquivo = os.listdir(path.pathC)
+                for arquivoo in lista_arquivo:
+                    if arquivoo == self.cpf + '.txt':
+                        os.remove(nome)
+                        print('\n>> TAXA QUITADA! <<')
+            elif achei == 'n taxa':
+                print('\n>> Nao há taxa... <<')
+        except:
+            print('\n>> Não há taxa para ser dada baixa! <<\n')
+        
