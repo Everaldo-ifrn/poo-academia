@@ -16,12 +16,12 @@ class Usuario:
                     else:
                         r == 'nao'
                 if r == 'sim':
-                     print('\n>> Usuário já cadastrado no sistema! <<\n')
+                     print('\n>> Usuário já cadastrado no sistema! <<')
                 if r == 'nao':
-                     print('\n>> Nao há cadastro com os dados informados! <<\n')
+                     print('\n>> Nao há cadastro com os dados informados! <<')
                     
         except: 
-            print('\n>> Nao há cadastro com os dados informados! <<\n')
+            print('\n>> Nao há cadastro com os dados informados! <<')
             
     def fazerCadastro(self, nome, telefone, endereco, altura, peso, medicoes, plano, mensalidade):
         self.nome = nome
@@ -117,50 +117,50 @@ class Usuario:
     def cancelarCadastro(self, cpf): 
         self.cpf = cpf
         try:
-             with open(path.pathC+self.cpf+'.txt', 'r') as arquivo:
-                 lista = arquivo.readlines()
-                 r = ''
-                 for plano in lista:
-                     lista2 = plano.split(': ')
-                     if lista2[1] == 'MENSAL\n':
-                         r = 'MENSAL'
-                         arquivo.close()
-                         break
-                     elif lista2[1] == 'ANUAL\n':
-                         r = 'ANUAL'
-                         break
-             if r == 'MENSAL':
-                 import os
-                 lista_arquivos = os.listdir(path.pathC)
-                 nome = path.pathC + self.cpf + '.txt'
-                 for arquivox in lista_arquivos:
-                     if arquivox == self.cpf + '.txt':
+            with open(path.pathC+self.cpf+'.txt', 'r') as arquivo:
+                lista = arquivo.readlines()
+                r = ''
+                for plano in lista:
+                    lista2 = plano.split(': ')
+                    if lista2[1] == 'MENSAL\n':
+                        r = 'MENSAL'
+                        arquivo.close()
+                        break
+                    elif lista2[1] == 'ANUAL\n':
+                        r = 'ANUAL'
+                        break
+            if r == 'MENSAL':
+                import os
+                lista_arquivos = os.listdir(path.pathC)
+                nome = path.pathC + self.cpf + '.txt'
+                for arquivox in lista_arquivos:
+                    if arquivox == self.cpf + '.txt':
                         os.remove(nome)  #aqui usamos essa biblioteca para apagar o arquivo do computador(apenas mensais que nao  atribuem taxas)
                         print('\n>> CADASTRO CANCELADO! <<\n')
 
-                 lista_arquivosT = os.listdir(path.pathT)
-                 nome = path.pathT + self.cpf + '.txt'
-                 for arquivox in lista_arquivosT:
-                     if arquivox == self.cpf + '.txt':
+                lista_arquivosT = os.listdir(path.pathT)
+                nome = path.pathT + self.cpf + '.txt'
+                for arquivox in lista_arquivosT:
+                    if arquivox == self.cpf + '.txt':
                         os.remove(nome)
 
-             elif r == 'ANUAL':          #aqui cancelamos as parcelas e atribuimos a taxa no arquivo, em finacias pode-se dar baixa
-                 import os
-                 lista_arquivosT = os.listdir(path.pathT)
-                 nome = path.pathT + self.cpf + '.txt'
-                 for arquivox in lista_arquivosT:
-                     if arquivox == self.cpf + '.txt':
+            elif r == 'ANUAL':          #aqui cancelamos as parcelas e atribuimos a taxa no arquivo, em finacias pode-se dar baixa
+                import os
+                lista_arquivosT = os.listdir(path.pathT)
+                nome = path.pathT + self.cpf + '.txt'
+                for arquivox in lista_arquivosT:
+                    if arquivox == self.cpf + '.txt':
                         os.remove(nome)  
 
-                 with open(path.pathC+self.cpf+'.txt', 'r') as arquivo:
-                     lista = arquivo.readlines()
-                     for i in range(12):
-                         lista.pop(8)
-                     taxa = float(input('\nInforme o valor da taxa \n> '))
-                     lista.append(f'TAXA: R${str(taxa)}\n')
-                 with open(path.pathC+self.cpf+'.txt', 'w') as arquivo:
+                with open(path.pathC+self.cpf+'.txt', 'r') as arquivo:
+                    lista = arquivo.readlines()
+                    for i in range(12):
+                        lista.pop(8)
+                    taxa = float(input('\nInforme o valor da taxa \n> '))
+                    lista.append(f'TAXA: R${str(taxa)}\n')
+                with open(path.pathC+self.cpf+'.txt', 'w') as arquivo:
                     for i in lista:
-                         arquivo.write(i)
+                        arquivo.write(i)
                     print('\n>> CADASTRO CANCELADO...TAXA PENDENDTE... <<\n')        
-        except ValueError:
+        except:
             print('\n>> NAO HÁ DADOS RELACIONADOS A ESSE CADASTRO! << \n')
