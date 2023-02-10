@@ -3,10 +3,10 @@ import path
 
 
 class TabelaExercicios:
-    def __init__(self, cpf, c):
+    def __init__(self, cpf, n):
         #self.codigo = codigo
         self.cpf = cpf
-        self.c = c  #nº de cada semana de treino criada
+        self.n = n  #nº de cada semana de treino criada
 
         try:
             with open(path.pathT + str(self.cpf) + '.txt', 'r') as arquivo:
@@ -39,7 +39,7 @@ class TabelaExercicios:
             with open(path.pathT + str(self.cpf) + '.txt', 'w') as arquivo:
                 for linha in linhas:
                     arquivo.write(linha)
-                arquivo.write('Semana: ' + str(self.c) + '\n')
+                arquivo.write('Semana: ' + str(self.n) + '\n')
                 arquivo.write('Objetivo: ' + self.objetivo + '\n')
                 for dia in semanaTreino:
                     arquivo.write(dia + '\n')
@@ -48,11 +48,11 @@ class TabelaExercicios:
         except:                      #Quando for a 1ª lista criada
             with open(path.pathT + str(self.cpf) + '.txt', 'w') as arquivo:
                 arquivo.write('CPF: '+ self.cpf + '\n')
-                arquivo.write('Semana: ' + str(self.c) + '\n')
+                arquivo.write('Semana: ' + str(self.n) + '\n')
                 arquivo.write('Objetivo: ' + self.objetivo + '\n')
                 for dia in semanaTreino:
                     arquivo.write(dia + '\n')
-        self.c = self.c + 1     #nº das semanas
+        self.n = self.n + 1     #nº das semanas
 
         print('\n>> Tabela de exercício criada! << \n')
 
