@@ -60,7 +60,7 @@ class Financias:
                 with open(path.pathC + self.cpf + '.txt', 'w') as arquivo:
                     for i in linhas:
                         arquivo.write(i)
-                    print('\n>> mensalidade dada baixa com sucesso! <<')
+                    print('\n>> Mensalidade dada baixa com sucesso! <<')
             elif achei == 'tempago':
                 print('\n>> Mensalidade já tá paga! <<')
             elif achei == 'ntem':
