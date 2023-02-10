@@ -3,7 +3,7 @@ from classExercicios import TabelaExercicios
 from classFinancias import Financias
 
 
-c = 0
+n = 0
 while True:
      cpf = input('- Seja bem vindo ao sistema, por favor digite o CPF do cliente> ')
      cliente = Usuario(cpf)
@@ -73,8 +73,8 @@ while True:
                     objetivo = 'Ganhar massa muscular'
                 elif r == 3:
                     objetivo = 'definiçao de musculos'
-                c = c + 1
-                clienteE = TabelaExercicios(cliente.cpf, c) 
+                n = n + 1
+                clienteE = TabelaExercicios(cliente.cpf, n) 
 
                 semana = ['Segunda', 'Terça', 'Quarta', 'Quinta', 'Sexta']    #Dias que a academia "Normal" funciona
                 semanaTreino = []               #Lista dos dias que o usuário vai treinar
@@ -89,7 +89,7 @@ while True:
 
             elif sistema == 2:
                 tabelaAlterar = int(input('\nQual tabela você quer alterar? (Exemplo: Semana 1, digite (1)) \n> '))
-                clienteE = TabelaExercicios(cliente.cpf, c)                
+                clienteE = TabelaExercicios(cliente.cpf, n)                
                 r = int(input('\nQual objetivo do treino? \n|1| Esmagrecer \n|2| Ganhar massa muscular \n|3| Definir os muscuslos \n> '))
                 if r == 1:
                     objetivo = 'Esmagrecer'
@@ -111,7 +111,7 @@ while True:
 
 
             elif sistema == 3:
-                clienteE = TabelaExercicios(cliente.cpf, c)
+                clienteE = TabelaExercicios(cliente.cpf, n)
                 clienteE.verTabela() 
 
             else:
