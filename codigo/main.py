@@ -9,9 +9,9 @@ while True:
      cliente = Usuario(cpf)
      print(' ')
      try:
-        sistemaPrincipal = int(input('\nPara que area do sistema deseja se dirigir: \n|1| CADASTROS \n|2| FINANCIAS \n|3| TABELAS \n|4| NADA\n> ')) 
+        sistemaPrincipal = int(input('\nPara que area do sistema deseja se dirigir: \n|1| CADASTROS \n|2| FINANCAS \n|3| TABELAS \n|4| NADA\n> ')) 
         if sistemaPrincipal == 1:
-            sistema = int(input('\nO que deseja fazer...\n[1] para fazer cadastro:\n[2] para alterar dados de cadastro\n[3] para ver relatorio de cadastro\n[4] para cancelar cadastro\n[5] para finalizar sistema\n>'))
+            sistema = int(input('\nO que deseja fazer...\n|1| para fazer cadastro:\n|2| para alterar dados de cadastro\n|3| para ver relatorio de cadastro\n|4| para cancelar cadastro\n|5| para finalizar sistema\n>'))
             print(' ')
 
             if sistema == 1:
