@@ -98,7 +98,7 @@ class TabelaExercicios:
             with open(path.pathT + str(self.cpf) + '.txt', 'w') as arquivo:
                 for linha in linhas:
                     arquivo.write(linha)
-            print('\n>> Tabela Alterada com sucesso! <<')
+            print('\n>> Tabela Alterada com sucesso! << \n')
 
         except:
             print('\n>> Não foi possivel alterar a Tabela de exercício, pois ela não existe! << \n')
